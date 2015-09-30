@@ -1,0 +1,196 @@
+<!DOCTYPE HTML><html><head><title>Workbeat API - Ciudades API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Workbeat API - Ciudades API documentation <small>version v1</small></h1><p>https://api.workbeat.com/v1/cfg/</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_ciudades" class="panel-title">/ciudades</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__ciudades"><span class="parent"></span>/ciudades</a> <span class="methods"><a href="#_ciudades_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__ciudades" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_ciudades_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información de todas las ciudades existentes.</p><p>Es requerido tener el permiso para consultar ciudades.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_ciudades_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/ciudades</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información de todas las ciudades existentes.</p><p>Es requerido tener el permiso para consultar ciudades.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_ciudades_get_request" data-toggle="tab">Request</a></li><li><a href="#_ciudades_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_ciudades_get_request"><h3>Query Parameters</h3><ul><li><strong>pagina</strong>: <em>(number )</em><p>Opcional. Numero de página a regresar.</p></li><li><strong>tamanoPagina</strong>: <em>(number- default: 20 )</em><p>Opcional. Tamaño de la página a regresar. Solo es válido si se especifica el parámetro "pagina".</p></li><li><strong>orden</strong>: <em>(string- default: id )</em><p>Opcional. Nombre del campo que será el criterio para realizar el paginado de los resultados. Sólo es válido si se especifica el parámetro "pagina"</p></li><li><strong>filtro</strong>: <em>(string )</em><p>Filtrado de ciudades por nombre.</p></li><li><strong>estado</strong>: <em>(string )</em><p>Código de tres letras (<a href="http://en.wikipedia.org/wiki/ISO_3166-2">ISO 3166-2</a>) del estado al que pertenece la ciudad. (<a href="http://en.wikipedia.org/wiki/ISO_3166-2:MX">ej. México</a>)</p></li><li><strong>pais</strong>: <em>(string- default: MX )</em><p>Código de dos letras (<a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>) del país al que pertenece la ciudad.</p></li></ul></div><div class="tab-pane" id="_ciudades_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa una colección de ciudades.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>[
+  { "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "descripcion": "Ciudad",
+    "properties": {
+      "id":  { "type": "number" },
+      "nombre": { "type": "string" },
+      "estado": { "type": "string",
+          "description":"Código de tres letras (ISO 3166-2) del estado al que pertenece la ciudad"},
+      "pais": { "type": "string",
+          "description": "Código de dos letras (ISO 3166-1 alpha-2) del país al que pertenece la ciudad"}
+    }
+  }
+]
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+  "id": 3452,
+  "nombre": "Monterrey",
+  "estado": "NLE",
+  "pais": "MX"
+  },
+  {
+  "id": 3453,
+  "nombre": "San Nicolás de los Garza",
+  "estado": "NLE",
+  "pais": "MX"
+  }
+  ...
+]
+
+o cuando es llamado con paginación...
+  
+{
+pagina: 1,
+tamanoPagina: 20,
+totalRegistros: 60,
+data:
+[
+  {
+  "id": 3452,
+  "nombre": "Monterrey",
+  "estado": "NLE",
+  "pais": "MX"
+  },
+  {
+  "id": 3453,
+  "nombre": "San Nicolás de los Garza",
+  "estado": "NLE",
+  "pais": "MX"
+  }
+  ...
+]
+}                  </code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_ciudades">/ciudades</a></li></ul></div></div></div></div></body></html>

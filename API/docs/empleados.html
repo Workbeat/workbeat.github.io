@@ -1,0 +1,1103 @@
+<!DOCTYPE HTML><html><head><title>Workbeat API - Empleados API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Workbeat API - Empleados API documentation <small>version v1</small></h1><p>https://api.workbeat.com/v1/adm/</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_empleados" class="panel-title">/empleados</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados"><span class="parent"></span>/empleados</a> <span class="methods"><a href="#_empleados_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_empleados_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información básica de todos los empleados existentes.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_empleados_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Crear un empleado (asignándole una posición obligatoriamente. Opcionalmente se pueden asignar atributos al empleado).</p><p>Es requerido tener el permiso para crear empleados.</p><p>Se valida:</p><ul><li>Que se especifiquen los siguientes campos: nombre, apellido paterno, fecha de nacimiento, ID de la posición, tipo de plantilla y fecha de ingreso.</li><li>Que todos los campos alfanuméricos tengan la longitud máxima permitida.</li><li>Que la posición que se quiere asignar al empleado exista.</li><li>Que el tipo de plantilla que se quiere asignar al empleado esté habilitado para la posición.</li><li>Que no exista otro empleado cuyo RFC, CURP o número de seguro social sea el mismo.</li><li>Que cada uno de los atributos de empleado que se quieren asignar existan.</li></ul></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/empleados</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información básica de todos los empleados existentes.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados_get_request" data-toggle="tab">Request</a></li><li><a href="#_empleados_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados_get_request"><h3>Query Parameters</h3><ul><li><strong>pagina</strong>: <em>(number )</em><p>Opcional. Numero de página a regresar.</p></li><li><strong>tamanoPagina</strong>: <em>(number- default: 20 )</em><p>Opcional. Tamaño de la página a regresar. Solo es válido si se especifica el parámetro "pagina".</p></li><li><strong>orden</strong>: <em>(string- default: id )</em><p>Opcional. Nombre del campo que será el criterio para realizar el paginado de los resultados. Sólo es válido si se especifica el parámetro "pagina"</p></li><li><strong>filtro</strong>: <em>(string )</em><p>Filtrado de empleados por nombre, apellidos, correo electrónico, posición o atributo default de la posición (usualmente "Departamento"). Si no se especifica regresa el listado completo de empleados.</p></li><li><strong>incluirBajas</strong>: <em>(string )</em><p>Si se incluye entonces el resultado incluirá a los exempleados de la empresa. Si no se especifica, el resultado incluirá solamente empleados activos.</p></li></ul></div><div class="tab-pane" id="_empleados_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa una colección de empleados.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>[
+  { "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "description": "Empleado",
+    "properties": {
+      "id": { "type": "number" },
+      "nombre": { "type": "string" },
+      "apellidoPaterno": { "type": "string" },
+      "apellidoMaterno": { "type": "string" },
+      "posiciones": [
+                      { "type": "object", 
+                        "description": "Posición del empleado",
+                        "properties": {
+                          "id": { "type": "number" },
+                          "nombre": { "type": "string" },
+                          "nombreOrganizacion": { "type": "string" },
+                          "codigo": { "type": "string" },
+                          "atributoDefault": { 
+                                              "type": "object",
+                                              "description": "Atributo default de una posición",
+                                              "properties": {
+                                               "nombreAtributo": { "type": "string" },
+                                               "referencia": { "type": "string" }, 
+                                               "nombre": { "type": "string" }
+                                              },
+                          "fechaIngreso": { "type": "date" },
+                          "fechaBaja": { "type": "date" }
+                        }
+                      }
+                    ]
+    }
+  }
+]
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+  "id": 1,
+  "nombre": "José",
+  "apellidoPaterno": "Pérez",
+  "apellidoMaterno": "Martínez",
+  "posiciones": [
+                  {
+                  "id": 1005,
+                  "nombre": "Ejecutivo de Ventas",
+                  "nombreOrganizacion": "Servicios ITX, S.C.",
+                  "codigo": "EJE-VEN",
+                  "atributoDefault": {
+                    "nombreAtributo": "Departamento",
+                    "referencia": "D001",
+                    "nombre": "Ventas"
+                  },
+                  "fechaIngreso": "Thu, 05 Sep 2013, 00:00:00 GMT",
+                  "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT"
+                  }
+                ]
+  },
+  {
+  "id": 2,
+  "nombre": "Perla",
+  "apellidoPaterno": "Arriaga",
+  "apellidoMaterno": "Rodríguez",
+  "posiciones": [
+                  {
+                  "id": 1006,
+                  "nombre": "Auxiliar de Reclutamiento",
+                  "nombreOrganizacion": "Servicios ITX, S.C.",
+                  "codigo": "AUX-REC",
+                  "atributoDefault": {
+                    "nombreAtributo": "Departamento",
+                    "referencia": "D002",
+                    "nombre": "Recursos Humanos"
+                  },
+                  "fechaIngreso": "Mon, 05 Jan 2015, 00:00:00 GMT",
+                  "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT"
+                  }
+                ]
+  }
+  ...
+]                        
+
+o cuando es llamado con paginación...
+
+{
+pagina: 1,
+tamanoPagina: 20,
+totalRegistros: 60,
+data:
+[
+  {
+    "id": 1,
+    "nombre": "José",
+    "apellidoPaterno": "Pérez",
+    "apellidoMaterno": "Martínez",
+    "posiciones": [
+                    {
+                    "id": 1005,
+                    "nombre": "Ejecutivo de Ventas",
+                    "nombreOrganizacion": "Servicios ITX, S.C.",
+                    "codigo": "EJE-VEN",
+                    "atributoDefault": {
+                      "nombreAtributo": "Departamento",
+                      "referencia": "D001",
+                      "nombre": "Ventas"
+                    },
+                    "fechaIngreso": "Thu, 05 Sep 2013, 00:00:00 GMT",
+                    "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT"
+                    }
+                  ]
+    },
+    {
+    "id": 2,
+    "nombre": "Perla",
+    "apellidoPaterno": "Arriaga",
+    "apellidoMaterno": "Rodríguez",
+    "posiciones": [
+                    {
+                    "id": 1006,
+                    "nombre": "Auxiliar de Reclutamiento",
+                    "nombreOrganizacion": "Servicios ITX, S.C.",
+                    "codigo": "AUX-REC",
+                    "atributoDefault": {
+                      "nombreAtributo": "Departamento",
+                      "referencia": "D002",
+                      "nombre": "Recursos Humanos"
+                    },
+                    "fechaIngreso": "Mon, 05 Jan 2015, 00:00:00 GMT",
+                    "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT"
+                    }
+                  ]
+    }
+    ...              
+]                                               
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/empleados</h4></div><div class="modal-body"><div class="alert alert-info"><p>Crear un empleado (asignándole una posición obligatoriamente. Opcionalmente se pueden asignar atributos al empleado).</p><p>Es requerido tener el permiso para crear empleados.</p><p>Se valida:</p><ul><li>Que se especifiquen los siguientes campos: nombre, apellido paterno, fecha de nacimiento, ID de la posición, tipo de plantilla y fecha de ingreso.</li><li>Que todos los campos alfanuméricos tengan la longitud máxima permitida.</li><li>Que la posición que se quiere asignar al empleado exista.</li><li>Que el tipo de plantilla que se quiere asignar al empleado esté habilitado para la posición.</li><li>Que no exista otro empleado cuyo RFC, CURP o número de seguro social sea el mismo.</li><li>Que cada uno de los atributos de empleado que se quieren asignar existan.</li></ul></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados_post_request" data-toggle="tab">Request</a></li><li><a href="#_empleados_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Empleado",
+  "properties": {
+    "nombre": { "type": "string", "maxLength": 70, "required": true },
+    "apellidoPaterno": { "type": "string", "maxLength": 50, "required": true },
+    "apellidoMaterno": { "type": "string", "maxLength": 50 },
+    "posicion": { "type": "object",
+                  "description": "Posición del empleado",
+                  "properties": {
+                    "id": { "type": "number", "required": true },
+                    "idTipoPlantilla": { "type": "number", "required": true },
+                    "fechaIngreso": { "type": "date", "required": true }
+                  },
+                  "required": true
+                },
+    "fechaNacimiento": { "type": "date", "required": true },
+    "sexo": { "type": "string", "enum": ["NE", "M", "F"], "description": "NE - No especificado, M - Masculino, F - Femenino" },
+    "ciudadNacimiento": { "type": "number" },
+    "estadoNacimiento": { "type": "string", "maxLength": 3 },
+    "paisNacimiento": { "type": "string", "maxLength": 3 },
+    "RFC": { "type": "string", "maxLength": 20 },
+    "CURP": { "type": "string", "maxLength": 20 },
+    "numeroSeguroSocial": { "type": "string", "maxLength": 30 },
+    "calle": { "type": "string", "maxLength": 500 },
+    "numeroResidencia": { "type": "string", "maxLength": 50 },
+    "colonia": { "type": "string", "maxLength": 40 },
+    "ciudadResidencia": { "type": "number" },
+    "estadoResidencia": { "type": "string", "maxLength": 3 },
+    "paisResidencia": { "type": "string", "maxLength": 3 },
+    "codigoPostal": { "type": "string", "maxLength": 12 },
+    "correoElectronicoCorporativo": { "type": "string", "maxLength": 150 },
+    "correoElectronicoPersonal": { "type": "string", "maxLength": 150 },
+    "estadoCivil": { "type": "string", "enum": ["NE", "SOL", "CAS", "VIU", "DIV", "UL", "SEP"], "description": "NE - No especificado, SOL - Soltero, CAS - Casado, VIU - Viudo, DIV - Divorciado, UL - Unión libre, SEP - Separado" },
+    "telefonoCasa": { "type": "string", "maxLength": 20 },
+    "telefonoOficina": { "type": "string", "maxLength": 20 },
+    "extension": { "type": "string", "maxLength": 10 },
+    "telefonoMovil": { "type": "string", "maxLength": 20 },
+    "telefonoRecados": { "type": "string", "maxLength": 20 },
+    "atributos": [
+                  { "type": "object", 
+                    "description": "Atributo de un empleado",
+                    "properties": {
+                      "idAtributo": { "type": "number", "required": true },
+                      "id": { "type": "number" },
+                      "referencia": { "type": "string" }
+                    }
+                  }
+                 ]
+  }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"nombre": "Fernando",
+"apellidoPaterno": "Terrazas",
+"apellidoMaterno": "López",
+"posicion": {
+  "id": 3490,
+  "idTipoPlantilla": 1,
+  "fechaIngreso": "Tue, 02 Jun 2015, 00:00:00 GMT",
+},
+"fechaNacimiento": "Mon, 02 Feb 1983, 00:00:00 GMT",
+"sexo": "M",
+"ciudadNacimiento": 3452,
+"estadoNacimiento": "NLE",
+"paisNacimiento": "MX",
+"RFC": "ABCD830202IW4",
+"CURP": "ABCD830202HNLNGN01",
+"numeroSeguroSocial": "57748987664",
+"calle": "Cielo",
+"numeroResidencia": "707",
+"colonia": "Fraccionamiento Serena",
+"ciudadResidencia": 3452,
+"estadoResidencia": "NLE",
+"paisResidencia": "MX",
+"codigoPostal": "67129",
+"correoElectronicoCorporativo": "fterrazas@empresa.com.mx",
+"correoElectronicoPersonal": "fterrazas@dominio.com.mx",
+"estadoCivil": "SOL",
+"telefonoCasa": "8183202717",
+"telefonoOficina": "8183336121",
+"extension": "20117",
+"telefonoMovil": "8180223389",
+"telefonoRecados": "8119118228",
+"atributos": [
+              {
+              "idAtributo": 5,
+              "id": 34,
+              "referencia": "TS001"
+              }
+             ]
+}
+</code></pre></div><div class="tab-pane" id="_empleados_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>El empleado se creó correctamente.</p><h3>Headers</h3><ul><li><strong>Location</strong>: <em>(string )</em><p>Url para acceder al nuevo empleado.</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object", 
+  "description": "Empleado",
+  "properties": {
+    "id": { "type": "number" },
+    "nombre": { "type": "string" },
+    "apellidoPaterno": { "type": "string" },
+    "apellidoMaterno": { "type": "string" },
+    "correoElectronicoCorporativo": { "type": "string" },
+    "correoElectronicoPersonal": { "type": "string" },
+    "idFotoExpediente": { "type": "string" },
+    "fechaNacimiento": { "type": "date" },
+    "sexo": { "type": "string" },
+    "ciudadNacimiento": { "type": "string" },
+    "estadoNacimiento": { "type": "string" },
+    "paisNacimiento": { "type": "string" },
+    "estadoCivil": { "type": "string" },
+    "RFC": { "type": "string" },
+    "CURP": { "type": "string" },
+    "numeroSeguroSocial": { "type": "string" },
+    "calle": { "type": "string" },
+    "numeroResidencia": { "type": "string" },
+    "colonia": { "type": "string" },
+    "ciudadResidencia": { "type": "string" },
+    "estadoResidencia": { "type": "string" },
+    "paisResidencia": { "type": "string" },
+    "codigoPostal": { "type": "string" },
+    "telefonoCasa": { "type": "string" },
+    "telefonoOficina": { "type": "string" },
+    "extension": { "type": "string" },
+    "telefonoMovil": { "type": "string" },
+    "telefonoRecados": { "type": "string" },
+    "posiciones": [
+                    { "type": "object", 
+                      "description": "Posición de un empleado",
+                      "properties": {
+                        "id": { "type": "number" },
+                        "nombre": { "type": "string" },
+                        "idOrganizacion": { "type": "number" },
+                        "nombreOrganizacion": { "type": "string" },
+                        "idTipoPlantilla": { "type": "number" },
+                        "nombreTipoPlantilla": { "type": "string" },
+                        "fechaIngreso": { "type": "date" },
+                        "fechaBaja": { "type": "date" },
+                        "atributos": [
+                                      { "type": "object", 
+                                        "description": "Atributo de una posición",
+                                        "properties": {
+                                          "idAtributo": { "type": "number" },
+                                          "nombreAtributo": { "type": "string" },
+                                          "id": { "type": "number" },
+                                          "referencia": { "type": "string" },
+                                          "nombre": { "type": "string"}
+                                         }
+                                       }
+                                     ]
+                         }
+                      }
+                  ],
+    "atributos": [
+                  { "type": "object",
+                    "description": "Atributo de un empleado",
+                    "properties": {
+                      "idAtributo": { "type": "number" },
+                      "nombreAtributo": { "type": "string" },
+                      "id": { "type": "number" },
+                      "referencia": { "type": "string" },
+                      "nombre": { "type": "string" }
+                    }
+                   }
+                  ]
+  }
+}              
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"id": 1,
+"nombre": "José",
+"apellidoPaterno": "Pérez",
+"apellidoMaterno": "Martínez",
+"correoElectronicoCorporativo": "jperez@empresa.com.mx",
+"correoElectronicoPersonal": "jperez@dominio.com.mx",
+"idFotoExpediente": "30CF04D8-C4F8-4F80-A994-292370D81DD4",
+"fechaNacimiento": "Sun, 25 Jun 1983, 00:00:00 GMT",
+"sexo": "Masculino",
+"ciudadNacimiento": "Monterrey",
+"estadoNacimiento": "Nuevo León",
+"paisNacimiento": "Mëxico",
+"estadoCivil": "Casado",
+"RFC": "ABCD830625IW4",
+"CURP": "ABCD830625HNLNH019",
+"numeroSeguroSocial": "58129435710",
+"calle": "Montecarlo",
+"numeroResidencia": "624",
+"colonia": "Residencial Los Ángeles Sector 2",
+"ciudadResidencia": "San Nicolás de los Garza",
+"estadoResidencia": "Nuevo León",
+"paisResidencia": "México",
+"codigoPostal": "64478",
+"telefonoCasa": "8183202717",
+"telefonoOficina": "8182863620",
+"extension": "115",
+"telefonoMovil": "8180208381",
+"telefonoRecados": "8112148960",
+"posiciones": [
+                {
+                "id": 1005,
+                "nombre": "Ejecutivo de Ventas",
+                "idOrganizacion": 1,
+                "nombreOrganizacion": "Servicios ITX, S.C.",
+                "idTipoPlantilla": 1,
+                "nombreTipoPlantilla": "Planta",
+                "fechaIngreso": "Mon, 16 May 2011, 00:00:00 GMT",
+                "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT",
+                "atributos": [
+                              {
+                              "idAtributo": 1,
+                              "nombreAtributo": "Departamento",
+                              "id": 1,
+                              "referencia": "D001",
+                              "nombre": "Ventas"
+                              },
+                              {
+                              "idAtributo": 2,
+                              "nombreAtributo": "Región",
+                              "id": 2,
+                              "referencia": "R001",
+                              "nombre": "Norte"
+                              }
+                             ],
+                  }
+                ],
+"atributos": [
+              {
+              "idAtributo": 3,
+              "nombreAtributo": "Tipo de sangre",
+              "id": 1,
+              "referencia": "O+",
+              "nombre": "O positivo"
+              }
+            ]
+}                                      
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para crear empleados.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para crear empleados."
+  }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>Error de validación en los datos del empleado. Puede ocurrir si alguno de los datos obligatorios no fue especificado, alguno de los campos alfanuméricos exceda la longitud máxima, no existe la posición que se quiere asignar al empleado, la posición no tiene habilitado el tipo de plantilla que se quiere asignar al empleado, existe otro empleado con el mismo RFC, CURP o número de seguro social o alguno de los atributos de empleado que se le quieren asignar no existen.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 422,
+    "message": "Error de validación en los datos del empleado."
+  }
+}         </code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados__id_"><span class="parent">/empleados</span>/{id}</a> <span class="methods"><a href="#_empleados__id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_empleados__id__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados__id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información básica de un empleado.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_empleados__id__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Actualizar la información de un empleado (no incluye su posición asignada).</p><p>Es requerido tener el permiso para editar empleados.</p><p>Se valida:</p><ul><li>Que se especifiquen los siguientes campos: nombre, apellido paterno y fecha de nacimiento.</li><li>Que todos los campos alfanuméricos tengan la longitud máxima permitida.</li><li>Que no exista otro empleado cuyo RFC, CURP o número de seguro social sea el mismo.</li><li>Que cada uno de los atributos de empleado que se quieren asignar existan.</li></ul></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información básica de un empleado.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__get_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_empleados__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Empleado",
+  "properties": {
+    "id": { "type": "number" },
+    "nombre": { "type": "string" },
+    "apellidoPaterno": { "type": "string" },
+    "apellidoMaterno": { "type": "string" },
+    "posiciones": [
+                    { "type": "object", 
+                      "description": "Posición del empleado",
+                      "properties": {
+                        "id": { "type": "number" },
+                        "nombre": { "type": "string" },
+                        "nombreOrganizacion": { "type": "string" },
+                        "codigo": { "type": "string" },
+                        "atributoDefault": { 
+                                            "type": "object",
+                                            "description": "Atributo default de una posición",
+                                            "properties": {
+                                             "nombreAtributo": { "type": "string" },
+                                             "referencia": { "type": "string" }, 
+                                             "nombre": { "type": "string" }
+                                            }
+                                          },
+                        "fechaIngreso": { "type": "date" },
+                        "fechaBaja": { "type": "date" }
+                      }
+                    }
+                  ]
+  }  
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"id": 1,
+"nombre": "Manuel",
+"apellidoPaterno": "Mendoza",
+"apellidoMaterno": "López",
+"posiciones": [
+                {
+                "id": 1006,
+                "nombre": "Ejecutivo de Soporte",
+                "nombreOrganizacion": "Servicios ITX, S.C.",
+                "codigo": "EJE-SOR",
+                "atributoDefault": {
+                  "nombreAtributo": "Departamento",
+                  "referencia": "D025",
+                  "nombre": "Sistemas",
+                },
+                "fechaIngreso": "Fri, 25 Oct 2010, 00:00:00 GMT",
+                "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT"
+                }
+              ]
+}
+          
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>La petición no está formada correctamente.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 400,
+    "message": "La petición no está formada correctamente. El ID del empleado debe ser un número entero."
+  }
+}          
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>No se encuentra el empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 404,
+    "message": "No se encuentra empleado."
+  }
+}        
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Actualizar la información de un empleado (no incluye su posición asignada).</p><p>Es requerido tener el permiso para editar empleados.</p><p>Se valida:</p><ul><li>Que se especifiquen los siguientes campos: nombre, apellido paterno y fecha de nacimiento.</li><li>Que todos los campos alfanuméricos tengan la longitud máxima permitida.</li><li>Que no exista otro empleado cuyo RFC, CURP o número de seguro social sea el mismo.</li><li>Que cada uno de los atributos de empleado que se quieren asignar existan.</li></ul></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__post_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__post_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Empleado",
+  "properties": {
+    "id": { "type": "number", "required": true },
+    "nombre": { "type": "string", "maxLength": 70, "required": true },
+    "apellidoPaterno": { "type": "string", "maxLength": 50, "required": true },
+    "apellidoMaterno": { "type": "string", "maxLength": 50 },
+    "fechaNacimiento": { "type": "date", "required": true },
+    "sexo": { "type": "string", "enum": ["NE", "M", "F"], "description": "NE - No especificado, M - Masculino, F - Femenino" },
+    "ciudadNacimiento": { "type": "number" },
+    "estadoNacimiento": { "type": "string", "maxLength": 3 },
+    "paisNacimiento": { "type": "string", "maxLength": 3 },
+    "RFC": { "type": "string", "maxLength": 20 },
+    "CURP": { "type": "string", "maxLength": 20 },
+    "numeroSeguroSocial": { "type": "string", "maxLength": 30 },
+    "calle": { "type": "string", "maxLength": 500 },
+    "numeroResidencia": { "type": "string", "maxLength": 50 },
+    "colonia": { "type": "string", "maxLength": 40 },
+    "ciudadResidencia": { "type": "number" },
+    "estadoResidencia": { "type": "string", "maxLength": 3 },
+    "paisResidencia": { "type": "string", "maxLength": 3 },
+    "codigoPostal": { "type": "string", "maxLength": 12 },
+    "correoElectronicoCorporativo": { "type": "string", "maxLength": 150 },
+    "correoElectronicoPersonal": { "type": "string", "maxLength": 150 },
+    "estadoCivil": { "type": "string", "enum": ["NE", "SOL", "CAS", "VIU", "DIV", "UL", "SEP"], "description": "NE - No especificado, SOL - Soltero, CAS - Casado, VIU - Viudo, DIV - Divorciado, UL - Unión libre, SEP - Separado" },
+    "telefonoCasa": { "type": "string", "maxLength": 20 },
+    "telefonoOficina": { "type": "string", "maxLength": 20 },
+    "extension": { "type": "string", "maxLength": 10 },
+    "telefonoMovil": { "type": "string", "maxLength": 20 },
+    "telefonoRecados": { "type": "string", "maxLength": 20 },
+    "atributos": [
+                  { "type": "object", 
+                    "description": "Atributo de un empleado",
+                    "properties": {
+                      "idAtributo": { "type": "number", "required": true },
+                      "id": { "type": "number" },
+                      "referencia": { "type": "string" }
+                    }
+                  }
+                 ]
+  }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"id": 10598,
+"nombre": "Fernando",
+"apellidoPaterno": "Terrazas",
+"apellidoMaterno": "López",
+"fechaNacimiento": "Mon, 02 Feb 1983, 00:00:00 GMT",
+"sexo": "M",
+"ciudadNacimiento": 3452,
+"estadoNacimiento": "NLE",
+"paisNacimiento": "MX",
+"RFC": "ABCD830202IW4",
+"CURP": "ABCD830202HNLNGN01",
+"numeroSeguroSocial": "57748987664",
+"calle": "Cielo",
+"numeroResidencia": "707",
+"colonia": "Fraccionamiento Serena",
+"ciudadResidencia": 3452,
+"estadoResidencia": "NLE",
+"paisResidencia": "MX",
+"codigoPostal": "67129",
+"correoElectronicoCorporativo": "fterrazas@empresa.com.mx",
+"correoElectronicoPersonal": "fterrazas@dominio.com.mx",
+"estadoCivil": "SOL",
+"telefonoCasa": "8183202717",
+"telefonoOficina": "8183336121",
+"extension": "20117",
+"telefonoMovil": "8180223389",
+"telefonoRecados": "8119118228",
+"atributos": [
+              {
+              "idAtributo": 5,
+              "id": 34,
+              "referencia": "TS001"
+              }
+             ]
+}   
+</code></pre></div><div class="tab-pane" id="_empleados__id__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>El empleado se actualizó correctamente.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object", 
+  "description": "Empleado",
+  "properties": {
+    "id": { "type": "number" },
+    "nombre": { "type": "string" },
+    "apellidoPaterno": { "type": "string" },
+    "apellidoMaterno": { "type": "string" },
+    "correoElectronicoCorporativo": { "type": "string" },
+    "correoElectronicoPersonal": { "type": "string" },
+    "idFotoExpediente": { "type": "string" },
+    "fechaNacimiento": { "type": "date" },
+    "sexo": { "type": "string" },
+    "ciudadNacimiento": { "type": "string" },
+    "estadoNacimiento": { "type": "string" },
+    "paisNacimiento": { "type": "string" },
+    "estadoCivil": { "type": "string" },
+    "RFC": { "type": "string" },
+    "CURP": { "type": "string" },
+    "numeroSeguroSocial": { "type": "string" },
+    "calle": { "type": "string" },
+    "numeroResidencia": { "type": "string" },
+    "colonia": { "type": "string" },
+    "ciudadResidencia": { "type": "string" },
+    "estadoResidencia": { "type": "string" },
+    "paisResidencia": { "type": "string" },
+    "codigoPostal": { "type": "string" },
+    "telefonoCasa": { "type": "string" },
+    "telefonoOficina": { "type": "string" },
+    "extension": { "type": "string" },
+    "telefonoMovil": { "type": "string" },
+    "telefonoRecados": { "type": "string" },
+    "atributos": [
+                  { "type": "object",
+                    "description": "Atributo de un empleado",
+                    "properties": {
+                      "idAtributo": { "type": "number" },
+                      "nombreAtributo": { "type": "string" },
+                      "id": { "type": "number" },
+                      "referencia": { "type": "string" },
+                      "nombre": { "type": "string" }
+                    }
+                   }
+                  ]
+  }
+}              
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"id": 1,
+"nombre": "José",
+"apellidoPaterno": "Pérez",
+"apellidoMaterno": "Martínez",
+"correoElectronicoCorporativo": "jperez@empresa.com.mx",
+"correoElectronicoPersonal": "jperez@dominio.com.mx",
+"idFotoExpediente": "30CF04D8-C4F8-4F80-A994-292370D81DD4",
+"fechaNacimiento": "Sun, 25 Jun 1983, 00:00:00 GMT",
+"sexo": "Masculino",
+"ciudadNacimiento": "Monterrey",
+"estadoNacimiento": "Nuevo León",
+"paisNacimiento": "Mëxico",
+"estadoCivil": "Casado",
+"RFC": "ABCD830625IW4",
+"CURP": "ABCD830625HNLNH019",
+"numeroSeguroSocial": "58129435710",
+"calle": "Montecarlo",
+"numeroResidencia": "624",
+"colonia": "Residencial Los Ángeles Sector 2",
+"ciudadResidencia": "San Nicolás de los Garza",
+"estadoResidencia": "Nuevo León",
+"paisResidencia": "México",
+"codigoPostal": "64478",
+"telefonoCasa": "8183202717",
+"telefonoOficina": "8182863620",
+"extension": "115",
+"telefonoMovil": "8180208381",
+"telefonoRecados": "8112148960",
+"atributos": [
+              {
+              "idAtributo": 3,
+              "nombreAtributo": "Tipo de sangre",
+              "id": 1,
+              "referencia": "O+",
+              "nombre": "O positivo"
+              }
+            ]
+}                                      
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para editar empleados.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para editar empleados."
+  }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>Error de validación en los datos del empleado. Puede ocurrir si alguno de los datos obligatorios no fue especificado, alguno de los campos alfanuméricos exceda la longitud máxima, existe otro empleado con el mismo RFC, CURP o número de seguro social o alguno de los atributos de empleado que se le quieren asignar no existen.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 422,
+    "message": "Error de validación en los datos del empleado."
+  }
+}                         
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados__id__detalle"><span class="parent">/empleados/{id}</span>/detalle</a> <span class="methods"><a href="#_empleados__id__detalle_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados__id__detalle" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados__id__detalle_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información detallada de un empleado.</p><p>Es requerido tener el permiso para consultar empleados.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__detalle_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados/{id}</span>/detalle</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información detallada de un empleado.</p><p>Es requerido tener el permiso para consultar empleados.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__detalle_get_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__detalle_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__detalle_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_empleados__id__detalle_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+   "type": "object", 
+   "description": "Empleado",
+   "properties": {
+     "id": { "type": "number" },
+     "nombre": { "type": "string" },
+     "apellidoPaterno": { "type": "string" },
+     "apellidoMaterno": { "type": "string" },
+     "correoElectronicoCorporativo": { "type": "string" },
+     "correoElectronicoPersonal": { "type": "string" },
+     "idFotoExpediente": { "type": "string" },
+     "fechaNacimiento": { "type": "date" },
+     "sexo": { "type": "string" },
+     "ciudadNacimiento": { "type": "string" },
+     "estadoNacimiento": { "type": "string" },
+     "paisNacimiento": { "type": "string" },
+     "estadoCivil": { "type": "string" },
+     "RFC": { "type": "string" },
+     "CURP": { "type": "string" },
+     "numeroSeguroSocial": { "type": "string" },
+     "calle": { "type": "string" },
+     "numeroResidencia": { "type": "string" },
+     "colonia": { "type": "string" },
+     "ciudadResidencia": { "type": "string" },
+     "estadoResidencia": { "type": "string" },
+     "paisResidencia": { "type": "string" },
+     "codigoPostal": { "type": "string" },
+     "telefonoCasa": { "type": "string" },
+     "telefonoOficina": { "type": "string" },
+     "extension": { "type": "string" },
+     "telefonoMovil": { "type": "string" },
+     "telefonoRecados": { "type": "string" },
+     "posiciones": [
+                    { "type": "object", 
+                      "description": "Posición de un empleado",
+                      "properties": {
+                        "id": { "type": "number" },
+                        "nombre": { "type": "string" },
+                        "idOrganizacion": { "type": "number" },
+                        "nombreOrganizacion": { "type": "string" },
+                        "idTipoPlantilla": { "type": "number" },
+                        "nombreTipoPlantilla": { "type": "string" },
+                        "fechaIngreso": { "type": "date" },
+                        "fechaBaja": { "type": "date" },
+                        "atributos": [
+                                      { "type": "object", 
+                                        "description": "Atributo de una posición",
+                                        "properties": {
+                                          "idAtributo": { "type": "number" },
+                                          "nombreAtributo": { "type": "string" },
+                                          "id": { "type": "number" },
+                                          "referencia": { "type": "string" },
+                                          "nombre": { "type": "string"}
+                                         }
+                                       }
+                                     ]
+                      }
+                     }
+                   ],
+     "atributos": [
+                   { "type": "object",
+                     "description": "Atributo de un empleado",
+                     "properties": {
+                       "idAtributo": { "type": "number" },
+                       "nombreAtributo": { "type": "string" },
+                       "id": { "type": "number" },
+                       "referencia": { "type": "string" },
+                       "nombre": { "type": "string" }
+                     }
+                   }
+                 ]
+   }
+ }
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"id": 1,
+"nombre": "José",
+"apellidoPaterno": "Pérez",
+"apellidoMaterno": "Martínez",
+"correoElectronicoCorporativo": "jperez@empresa.com.mx",
+"correoElectronicoPersonal": "jperez@dominio.com.mx",
+"idFotoExpediente": "30CF04D8-C4F8-4F80-A994-292370D81DD4",
+"fechaNacimiento": "Sun, 25 Jun 1983, 00:00:00 GMT",
+"sexo": "Masculino",
+"ciudadNacimiento": "Monterrey",
+"estadoNacimiento": "Nuevo León",
+"paisNacimiento": "Mëxico",
+"estadoCivil": "Casado",
+"RFC": "ABCD830625IW4",
+"CURP": "ABCD830625HNLNH019",
+"numeroSeguroSocial": "58129435710",
+"calle": "Montecarlo",
+"numeroResidencia": "624",
+"colonia": "Residencial Los Ángeles Sector 2",
+"ciudadResidencia": "San Nicolás de los Garza",
+"estadoResidencia": "Nuevo León",
+"paisResidencia": "México",
+"codigoPostal": "64478",
+"telefonoCasa": "8183202717",
+"telefonoOficina": "8182863620",
+"extension": "115",
+"telefonoMovil": "8180208381",
+"telefonoRecados": "8112148960",
+"posiciones": [
+                {
+                "id": 1005,
+                "nombre": "Ejecutivo de Ventas",
+                "idOrganizacion": 1,
+                "nombreOrganizacion": "Servicios ITX, S.C.",
+                "idTipoPlantilla": 1,
+                "nombreTipoPlantilla": "Planta",
+                "fechaIngreso": "Mon, 16 May 2011, 00:00:00 GMT",
+                "fechaBaja": "Tue, 01 Jan 1900, 00:00:00 GMT",
+                "atributos": [
+                              {
+                              "idAtributo": 1,
+                              "nombreAtributo": "Departamento",
+                              "id": 1,
+                              "referencia": "D001",
+                              "nombre": "Ventas"
+                              },
+                              {
+                              "idAtributo": 2,
+                              "nombreAtributo": "Región",
+                              "id": 2,
+                              "referencia": "R001",
+                              "nombre": "Norte"
+                              }
+                            ],
+                }
+            ],
+"atributos": [
+              {
+              "idAtributo": 3,
+              "nombreAtributo": "Tipo de sangre",
+              "id": 1,
+              "referencia": "O+",
+              "nombre": "O positivo"
+              }
+            ]
+}                                 
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>La petición no está formada correctamente.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 400,
+    "message": "La petición no está formada correctamente. El ID del empleado debe ser un número entero."
+  }
+}          
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para consultar empleados.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para consultar empleados."
+  }
+}              
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>No se encuentra el empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 404,
+    "message": "No se encuentra el empleado."
+  }
+}  
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados__id__invitacion"><span class="parent">/empleados/{id}</span>/invitacion</a> <span class="methods"><a href="#_empleados__id__invitacion_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados__id__invitacion" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados__id__invitacion_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Enviar una invitacion a Workbeat a un empleado.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__invitacion_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados/{id}</span>/invitacion</h4></div><div class="modal-body"><div class="alert alert-info"><p>Enviar una invitacion a Workbeat a un empleado.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__invitacion_post_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__invitacion_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__invitacion_post_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_empleados__id__invitacion_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Si el empleado aún no tiene acceso habilitado a Workbeat, provocar el envío normal de la plantilla de correo electrónico (al correo electrónico corporativo o personal según sea el caso) con la invitación para ser usuario de Workbeat (establecer contraseña por primera vez) al empleado en cuestión.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para enviar invitación a Workbeat a un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+   "error": {
+  "code": 403,
+  "message": "No se tienen los permisos necesarios para enviar invitación a Workbeat a un empleado."
+  }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>El empleado a quien se pretende enviar invitación a Workbeat, debe contar con un correo electrónico (corporativo o personal). También debe validarse que no se trate de un exempleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+ "error": {
+ "code": 422,
+ "message": "Error de validación en los datos de la invitación a Workbeat del empleado."
+   }
+}               
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados__id__acceso"><span class="parent">/empleados/{id}</span>/acceso</a> <span class="methods"><a href="#_empleados__id__acceso_delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_empleados__id__acceso_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados__id__acceso" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados__id__acceso_delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Quitar acceso a Workbeat a un empleado.<br>Es requerido tener el permiso para poder quitar el acceso a un empleado.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_empleados__id__acceso_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Dar acceso a Workbeat a un empleado.</p><p>Es requerido tener el permiso para dar acceso a empleados.</p><p>Se valida:</p><ul><li>Que sea el administrador, quien asigne los permisos.</li></ul></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__acceso_delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados/{id}</span>/acceso</h4></div><div class="modal-body"><div class="alert alert-info"><p>Quitar acceso a Workbeat a un empleado.<br>Es requerido tener el permiso para poder quitar el acceso a un empleado.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__acceso_delete_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__acceso_delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__acceso_delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_empleados__id__acceso_delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Se quito el acceso a Workbeat al empleado correctamente.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para quitar el acceso a Workbeat a un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para quitar el acceso a Workbeat a un empleado."
+  }
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__acceso_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados/{id}</span>/acceso</h4></div><div class="modal-body"><div class="alert alert-info"><p>Dar acceso a Workbeat a un empleado.</p><p>Es requerido tener el permiso para dar acceso a empleados.</p><p>Se valida:</p><ul><li>Que sea el administrador, quien asigne los permisos.</li></ul></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__acceso_post_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__acceso_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__acceso_post_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>[
+     { "$schema": "http://json-schema.org/schema",
+        "type": "object",
+        "description": "acceso",
+        "properties": {
+        "contrasenia": { "type": "string"},
+                      }
+      }
+]
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+       {
+        "contrasenia": "123",
+       }    
+]  
+</code></pre></div><div class="tab-pane" id="_empleados__id__acceso_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Editar el registro correspondiente en la tabla “Persona”, con los siguientes valores: -userId -Valor del campo “email” si es diferente de vacío o nulo. -Si el campo “email” es vacío o nulo, y el campo “emailPersonal” es diferente de vacío o nulo, conformar como “NOMBRECORTOTENANT\idPersona”. -password: aplicar al valor del parámetro “contrasenia” el método HASH correspondiente para determinar la cadena a almacenar en este campo. -fechaLastUpdate: GETDATE(). -accesoHabilitado: 2.</p><p>Enviar al empleado una nueva plantilla de correo electrónico similar al que se envía a un empleado que establece su contraseña por primera vez, pero agregando las siguientes consideraciones: -El correo deberá indicarle además de cuál es su usuario, cuál es su contraseña asignada. -El correo le deberá de sugerir que cambie su contraseña la primera vez que entre a la aplicación (idealmente el botón del correo electrónico lo llevaría directamente a la pantalla para cambiar la contraseña).</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object", 
+  "description": "Empleado",
+  "properties": {
+  "id": { "type": "number" },
+  "nombre": { "type": "string" },
+  "apellidoPaterno": { "type": "string" },
+  "apellidoMaterno": { "type": "string" },
+  "usuario": { "type": "string" },
+  "contrasenia": { "type": "string" },
+ "correoElectronico": { "type": "string" }
+               }
+}
+         
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+Si no tiene correo electrónico corporativo:
+{
+  "id": 1,
+  "nombre": "Jorge",
+  "apellidoPaterno”: “Escamilla”,
+  "apellidoMaterno”: “Espinosa”,
+  "usuario”: “CLIENTE\1”,
+  "contrasenia”: “123”,
+  "correoElectronico”: “jescamilla_72@gmail.com”
+ }
+   Si tiene correo electrónico corporativo:
+  {
+   "id”: 1,
+   "nombre”: “Jorge”,
+   "apellidoPaterno”: “Escamilla”,
+   "apellidoMaterno”: “Espinosa”,                    “usuario”: “jescamilla@cliente.com.mx”,
+   "contrasenia”: “123”,	
+  "correoElectronico”: “jescamilla@cliente.com.mx”	
+  }
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para dar acceso a Workbeat a un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+  "code": 403,
+  "message": "No se tienen los permisos necesarios para dar acceso a Workbeat a un empleado."
+   }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>El empleado debe tener algún correo electrónico en su expediente (ya sea el corporativo o el personal). No debe tener ya acceso habilitado o bien que le hayan enviado ya la invitación para registrarse como usuario de Workbeat por su cuenta. No debe tratarse de un exempleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+  "code": 422,
+  "message": "Error de validación en los datos delacceso a Workbeat del empleado."
+    }
+}       
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados__id__familiares"><span class="parent">/empleados/{id}</span>/familiares</a> <span class="methods"><a href="#_empleados__id__familiares_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados__id__familiares" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados__id__familiares_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información básica del listado de familiares de un empleado.</p><p>Es requerido tener el permiso para consultar la lista de familiares de un empleado.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__familiares_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados/{id}</span>/familiares</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información básica del listado de familiares de un empleado.</p><p>Es requerido tener el permiso para consultar la lista de familiares de un empleado.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__familiares_get_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__familiares_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__familiares_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_empleados__id__familiares_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa una coleccion de informacion del listado de los familiares de un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>[
+  { "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "description": "Listado de familiares de un empleado",
+    "properties": {
+      "nombre": { "type": "string" },
+      "apellidoPaterno": { "type": "string" },
+      "apellidoMaterno": { "type": "string" },
+      "parentesco":  { "type": "string" },
+      "sexo": { "type": "string" },
+      "ocupacion": { "type": "string" },
+      "fechaNacimiento": { "type": "Date" },
+      "dependeEconomicamente": { "type": "string" },
+         }
+  }
+]
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+    {
+      "nombre”: “Patricia”,
+      "apellidoPaterno”: “Degollado”,
+      "apellidoMaterno”: “Monárrez”,
+      "parentesco”: “Padre / madre”,
+      "sexo”: “Femenino”,
+      "ocupacion”: “Hogar”,
+      "fechaNacimiento”: “Tue, 03 Mar 1964, 00:00:00 GMT”,
+      "dependeEconomicamente”: false
+    },
+   {
+      "nombre”: “Juan Andrés”,
+      "apellidoPaterno”: “Mundo”,
+      "apellidoMaterno”: “Degollado”,
+      "parentesco”: “Hermano(a)”,
+      "sexo”: “Masculino”,
+      "ocupacion”: “Contador público”,
+      "fechaNacimiento”: “Mon, 25 Apr 1988, 00:00:00 GMT”,
+      "dependeEconomicamente”: false
+   },
+     ...
+]    
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__empleados__id__movimientosPersonal"><span class="parent">/empleados/{id}</span>/movimientosPersonal</a> <span class="methods"><a href="#_empleados__id__movimientosPersonal_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__empleados__id__movimientosPersonal" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_empleados__id__movimientosPersonal_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información básica de todos los movimientos de personal de un empleado.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_empleados__id__movimientosPersonal_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/empleados/{id}</span>/movimientosPersonal</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información básica de todos los movimientos de personal de un empleado.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_empleados__id__movimientosPersonal_get_request" data-toggle="tab">Request</a></li><li><a href="#_empleados__id__movimientosPersonal_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_empleados__id__movimientosPersonal_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul><h3>Query Parameters</h3><ul><li><strong>tipoMovimiento</strong>: <em>(one of Baja,Reingreso,Cambio lateral,Corrección,Democión,Promoción,Transferencia )</em><p>Filtrado de movimientos de personal por tipo.</p></li><li><strong>fechaInicial</strong>: <em>(string )</em><p>Filtrado de movimientos de personal por fecha (todos los movimientos aplicados a partir de esta fecha).</p></li><li><strong>fechaFinal</strong>: <em>(string )</em><p>Filtrado de movimientos de personal por fecha (todos los movimientos aplicados hasta esta fecha).</p></li></ul></div><div class="tab-pane" id="_empleados__id__movimientosPersonal_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa una colección de movimientos de personal de un empleado.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>[
+  { "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "description": "Movimiento de personal",
+    "properties": {
+      "fecha": { "type": "date" },
+      "tipoMovimiento" { "type": "string" },
+      "posicion": { 
+                    "type": "object",
+                    "description": "Posición del movimiento",
+                    "properties": {
+                      "id": { "type": "number" },
+                      "nombre": { "type": "string" },
+                      "nombreOrganizacion": { "type": "string" },
+                      "codigo": { "type": "string" },
+                      "atributoDefault": { 
+                                          "type": "object",
+                                          "description": "Atributo default de una posición", 
+                                          "properties": {
+                                            "nombreAtributo": { "type": "string" },
+                                            "referencia": { "type": "string" },
+                                            "nombre": { "type": "string" }
+                                          }
+                                         }
+                    },
+      "motivoBaja": { "type": "string" },
+      "observaciones": { "type": "string" }
+    }
+  }
+]
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+  "fecha": "Thu, 11 Jun 2015, 12:13:00 GMT",
+  "tipoMovimiento": "Promoción",
+  "posicion": {
+              "id": 200,
+              "nombre": "Jefe de Sistemas",
+              "nombreOrganizacion": "Servicios ITX, S.C.",
+              "codigo": "JEF-SIS",
+              "atributoDefault": {
+                                  "nombreAtributo": "Departamento",
+                                  "referencia": "D001",
+                                  "nombre": "Sistemas"
+                                 }
+              },
+  "motivoBaja": "",
+  "observaciones": "Se promueve al empleado de Analista de Sistemas a Jefe de Sistemas debido a su excelente desempeño"
+  },
+  {
+  "fecha": "Mon, 15 Jun 2015, 08:00:00 GMT",
+  "tipoMovimiento": "Baja",
+  "posicion": {
+              "id": 200,
+              "nombre": "Jefe de Sistemas",
+              "nombreOrganizacion": "Servicios ITX, S.C.",
+              "codigo": "JEF-SIS",
+              "atributoDefault": {
+                                  "nombreAtributo": "Departamento",
+                                  "referencia": "D001",
+                                  "nombre": "Sistemas"
+                                 }
+              },
+  "motivoBaja": "Renuncia voluntaria - Mejor ingreso",
+  "observaciones": "El empleado se va a otra empresa donde consiguió un mejor ingreso, no se le puede hacer una contraoferta por no contar con un desempeño adecuado."
+  },
+  ...
+]
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_empleados">/empleados</a></li></ul></div></div></div></div></body></html>
