@@ -1,0 +1,379 @@
+<!DOCTYPE HTML><html><head><title>Workbeat API - Movimientos de personal API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Workbeat API - Movimientos de personal API documentation <small>version v1</small></h1><p>https://api.workbeat.com/v1/adm/</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_movimientosPersonal" class="panel-title">/movimientosPersonal</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__movimientosPersonal"><span class="parent"></span>/movimientosPersonal</a> <span class="methods"><a href="#_movimientosPersonal_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_movimientosPersonal_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__movimientosPersonal" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_movimientosPersonal_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información básica de todos los movimientos de personal existentes.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_movimientosPersonal_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Crear un movimiento de personal.</p><p>Es requerido tener el permiso para crear movimientos de personal.</p><p>Se valida:</p><ul><li>Que exista el empleado para el cual se quiere crear un movimiento de personal.</li><li>Que el tipo de movimiento de personal sea válido.</li><li>Que la fecha de aplicación del movimiento sea válida (por ejemplo, si es una baja, la fecha debe ser posterior a la fecha de ingreso del empleado).</li><li>Que la nueva posición a asignar corresponda con el tipo de movimiento de personal (por ejemplo, si se indica que se trata de una transferencia, la nueva posición debe pertenecer a otra organización o bien ser diferente a la posición actual en alguno de sus atributos).</li><li>Que la nueva posición tenga habilitado el tipo de plantilla que se quiere asignar al empleado.</li><li>Si se trata de una baja, que se especifique el motivo de baja del empleado (consultar catálogo de motivos de baja).</li><li>Si se trata de un reingreso, que efectivamente se trate de un exempleado.</li></ul></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_movimientosPersonal_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/movimientosPersonal</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información básica de todos los movimientos de personal existentes.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_movimientosPersonal_get_request" data-toggle="tab">Request</a></li><li><a href="#_movimientosPersonal_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_movimientosPersonal_get_request"><h3>Query Parameters</h3><ul><li><strong>pagina</strong>: <em>(number )</em><p>Opcional. Numero de página a regresar.</p></li><li><strong>tamanoPagina</strong>: <em>(number- default: 20 )</em><p>Opcional. Tamaño de la página a regresar. Solo es válido si se especifica el parámetro "pagina".</p></li><li><strong>orden</strong>: <em>(string- default: id )</em><p>Opcional. Nombre del campo que será el criterio para realizar el paginado de los resultados. Sólo es válido si se especifica el parámetro "pagina"</p></li><li><strong>tipoMovimiento</strong>: <em>(one of Baja,Reingreso,Cambio lateral,Corrección,Democión,Promoción,Transferencia )</em><p>Filtrado de movimientos de personal por tipo.</p></li><li><strong>fechaInicial</strong>: <em>(string )</em><p>Filtrado de movimientos de personal por fecha (todos los movimientos aplicados a partir de esta fecha).</p></li><li><strong>fechaFinal</strong>: <em>(string )</em><p>Filtrado de movimientos de personal por fecha (todos los movimientos aplicados hasta esta fecha).</p></li></ul></div><div class="tab-pane" id="_movimientosPersonal_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa una colección de movimientos de personal.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>[
+  { "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "description": "Movimiento de personal",
+    "properties": {
+      "idEmpleado": { "type": "number" },
+      "nombre": { "type": "string" },
+      "apellidoPaterno": { "type": "string" },
+      "apellidoMaterno": { "type": "string" },
+      "fecha": { "type": "date" },
+      "tipoMovimiento" { "type": "string" },
+      "posicion": { 
+                    "type": "object",
+                    "description": "Posición del movimiento",
+                    "properties": {
+                      "id": { "type": "number" },
+                      "nombre": { "type": "string" },
+                      "nombreOrganizacion": { "type": "string" },
+                      "codigo": { "type": "string" },
+                      "atributoDefault": { 
+                                          "type": "object",
+                                          "description": "Atributo default de una posición", 
+                                          "properties": {
+                                            "nombreAtributo": { "type": "string" },
+                                            "referencia": { "type": "string" },
+                                            "nombre": { "type": "string" }
+                                          }
+                                         }
+                    },
+      "motivoBaja": { "type": "string" },
+      "observaciones": { "type": "string" }
+    }
+  }
+]
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+  "idEmpleado": 10500,
+  "nombre": "Juan Manuel",
+  "apellidoPaterno": "Sandoval",
+  "apellidoMaterno": "Mendoza",
+  "fecha": "Thu, 11 Jun 2015, 12:13:00 GMT",
+  "tipoMovimiento": "Promoción",
+  "posicion": {
+              "id": 200,
+              "nombre": "Jefe de Sistemas",
+              "nombreOrganizacion": "Servicios ITX, S.C.",
+              "codigo": "JEF-SIS",
+              "atributoDefault": {
+                                  "nombreAtributo": "Departamento",
+                                  "referencia": "D001",
+                                  "nombre": "Sistemas"
+                                 }
+              },
+  "motivoBaja": "",
+  "observaciones": "Se promueve al empleado de Analista de Sistemas a Jefe de Sistemas debido a su excelente desempeño"
+  },
+  {
+  "idEmpleado": 10400,
+  "nombre": "Martín",
+  "apellidoPaterno": "Sánchez",
+  "apellidoMaterno": "Martínez",
+  "fecha": "Mon, 08 Jun 2015, 08:00:00 GMT",
+  "tipoMovimiento": "Baja",
+  "posicion": {
+              "id": 201,
+              "nombre": "Ejecutivo de Soporte",
+              "nombreOrganizacion": "Servicios ITX, S.C.",
+              "codigo": "EJE-SOP",
+              "atributoDefault": {
+                                  "nombreAtributo": "Departamento",
+                                  "referencia": "D002",
+                                  "nombre": "Soporte Interno"
+                                 }
+              },
+  "motivoBaja": "Renuncia voluntaria - Mejor ingreso",
+  "observaciones": "El empleado se va a otra empresa donde consiguió un mejor ingreso, no se le puede hacer una contraoferta por no contar con un desempeño adecuado."
+  },
+  ...
+]
+
+o cuando es llamado con paginación...
+
+{
+pagina: 1,
+tamanoPagina: 20,
+totalRegistros: 40,
+data: 
+[
+  {
+  "idEmpleado": 10500,
+  "nombre": "Juan Manuel",
+  "apellidoPaterno": "Sandoval",
+  "apellidoMaterno": "Mendoza",
+  "fecha": "Thu, 11 Jun 2015, 12:13:00 GMT",
+  "tipoMovimiento": "Promoción",
+  "posicion": {
+              "id": 200,
+              "nombre": "Jefe de Sistemas",
+              "nombreOrganizacion": "Servicios ITX, S.C.",
+              "codigo": "JEF-SIS",
+              "atributoDefault": {
+                                  "nombreAtributo": "Departamento",
+                                  "referencia": "D001",
+                                  "nombre": "Sistemas"
+                                 }
+              },
+  "motivoBaja": "",
+  "observaciones": "Se promueve al empleado de Analista de Sistemas a Jefe de Sistemas debido a su excelente desempeño"
+  },
+  {
+  "idEmpleado": 10400,
+  "nombre": "Martín",
+  "apellidoPaterno": "Sánchez",
+  "apellidoMaterno": "Martínez",
+  "fecha": "Mon, 08 Jun 2015, 08:00:00 GMT",
+  "tipoMovimiento": "Baja",
+  "posicion": {
+              "id": 201,
+              "nombre": "Ejecutivo de Soporte",
+              "nombreOrganizacion": "Servicios ITX, S.C.",
+              "codigo": "EJE-SOP",
+              "atributoDefault": {
+                                  "nombreAtributo": "Departamento",
+                                  "referencia": "D002",
+                                  "nombre": "Soporte Interno"
+                                 }
+              },
+  "motivoBaja": "Renuncia voluntaria - Mejor ingreso",
+  "observaciones": "El empleado se va a otra empresa donde consiguió un mejor ingreso, no se le puede hacer una contraoferta por no contar con un desempeño adecuado."
+  },
+  ...              
+]
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_movimientosPersonal_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/movimientosPersonal</h4></div><div class="modal-body"><div class="alert alert-info"><p>Crear un movimiento de personal.</p><p>Es requerido tener el permiso para crear movimientos de personal.</p><p>Se valida:</p><ul><li>Que exista el empleado para el cual se quiere crear un movimiento de personal.</li><li>Que el tipo de movimiento de personal sea válido.</li><li>Que la fecha de aplicación del movimiento sea válida (por ejemplo, si es una baja, la fecha debe ser posterior a la fecha de ingreso del empleado).</li><li>Que la nueva posición a asignar corresponda con el tipo de movimiento de personal (por ejemplo, si se indica que se trata de una transferencia, la nueva posición debe pertenecer a otra organización o bien ser diferente a la posición actual en alguno de sus atributos).</li><li>Que la nueva posición tenga habilitado el tipo de plantilla que se quiere asignar al empleado.</li><li>Si se trata de una baja, que se especifique el motivo de baja del empleado (consultar catálogo de motivos de baja).</li><li>Si se trata de un reingreso, que efectivamente se trate de un exempleado.</li></ul></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_movimientosPersonal_post_request" data-toggle="tab">Request</a></li><li><a href="#_movimientosPersonal_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_movimientosPersonal_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Movimiento de personal",
+  "properties": {
+    "idEmpleado": { "type": "number", "required": true },
+    "fecha": { "type": "date", "required": true },
+    "tipoMovimiento": { "type": "string", "required": true, "enum": ["Baja", "Reingreso", "Cambio lateral", "Corrección", "Democión", "Promoción", "Transferencia"] },
+    "posicion": {
+                  "type": "object",
+                  "description": "Posición del movimiento",
+                  "properties": {
+                    "id": { "type": "number", "required": true },
+                    "idTipoPlantilla": { "type": "number", "required": true }
+                  },
+                  "required": true
+                },
+    "quitarPosicion": { "type": "boolean" },
+    "idMotivoBaja": { "type": "number" }, 
+    "observaciones": { "type": "string" }
+  } 
+} 
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"idEmpleado": 58900,
+"fecha": "Thu, 11 Jun 2015, 00:00:00 GMT",
+"tipoMovimiento": "Transferencia",
+"posicion": {
+  "id": 587,
+  "idTipoPlantilla": 45
+},
+"quitarPosicion": false,
+"idMotivoBaja": 0,
+"observaciones": "Se transfiere al empleado a empresa de nueva creación."
+}
+</code></pre></div><div class="tab-pane" id="_movimientosPersonal_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>El movimiento de personal se creó correctamente.</p><h3>Headers</h3><ul><li><strong>Location</strong>: <em>(string )</em><p>Url para acceder al movimiento de personal.</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Movimiento de personal",
+  "properties": {
+    "idMovimiento": { "type": "number" },
+    "idEmpleado": { "type": "number" },
+    "nombre": { "type": "string" },
+    "apellidoPaterno": { "type": "string" },
+    "apellidoMaterno": { "type": "string" },
+    "fecha": { "type": "date" },
+    "tipoMovimiento": { "type": "string" },
+    "posicion": { 
+                  "type": "object",
+                  "description": "Posición del movimiento",
+                  "properties": {
+                    "id": { "type": "number" },
+                    "nombre": { "type": "string" },
+                    "nombreOrganizacion": { "type": "string" },
+                    "codigo": { "type": "string" },
+                    "tipoPlantilla": { "type": "string" },
+                    "atributoDefault": { 
+                                        "type": "object",
+                                        "description": "Atributo default de una posición", 
+                                        "properties": {
+                                          "nombreAtributo": { "type": "string" },
+                                          "referencia": { "type": "string" },
+                                          "nombre": { "type": "string" }
+                                        }
+                                       }
+                  }
+                 },
+    "quitarPosicion": { "type": "boolean" },
+    "motivoBaja": { "type": "string" },
+    "observaciones": { "type": "string" }
+  }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+"idMovimiento": 4568,
+"idEmpleado": 58900,
+"nombre": "Pedro",
+"apellidoPaterno": "Sosa",
+"apellidoMaterno": "Rodríguez",
+"fecha": "Thu, 11 Jun 2015, 00:00:00 GMT",
+"tipoMovimiento": "Transferencia",
+"posicion": {
+            "id": 201,
+            "nombre": "Ejecutivo de Soporte",
+            "nombreOrganizacion": "Servicios ITX, S.C.",
+            "codigo": "EJE-SOP",
+            "tipoPlantilla": "Planta",
+            "atributoDefault": {
+                                "nombreAtributo": "Departamento",
+                                "referencia": "D002",
+                                "nombre": "Soporte Interno"
+                               }
+            },  
+"quitarPosicion": false,
+"motivoBaja": 0,
+"observaciones": "Se transfiere al empleado a empresa de nueva creación."            
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para crear movimientos de personal.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para crear movimientos de personal."
+  }
+}   
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>Error de validación en los datos del movimiento de personal. Puede ocurrir si alguno de los datos obligatorios no fue especificado, el empleado no existe, el tipo de movimiento no es correcto, la fecha no es aplicable de acuerdo al tipo de movimiento, la nueva posición no refleja el tipo de movimiento especificado, la posición no tiene habilitado el tipo de plantilla que se quiere asignar o no se especificó el motivo de baja (para el tipo de movimiento "Baja").</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 422,
+    "message": "Error de validación en los datos del movimiento de personal."
+  }
+}                         </code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_movimientosPersonal">/movimientosPersonal</a></li></ul></div></div></div></div></body></html>

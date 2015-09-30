@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39">
+
+  <title>Workbeat API - Posiciones API documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js">
+</script>
+  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js">
+</script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+</script>
+  <script type="text/javascript">
+      $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+  </script>
+  <style>
+      .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target="#sidebar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9" role="main">
+        <div class="page-header">
+          <h1>Workbeat API - Posiciones API documentation <small>version v1</small></h1>
+
+          <p>https://api.workbeat.com/v1/org/</p>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 id="_posiciones" class="panel-title">/posiciones</h3>
+          </div>
+
+          <div class="panel-body">
+            <div class="panel-group">
+              <div class="panel panel-white">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posiciones">/posiciones</a>
+                  <span class="methods"><a href="#_posiciones_get"><span class="badge badge_get">get </span></a> <a href=
+                  "#_posiciones_post"><span class="badge badge_post">post </span></a></span></h4>
+                </div>
+
+                <div id="panel__posiciones" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="list-group">
+                      <div onclick="window.location.href = &#39;#_posiciones_get&#39;" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+
+                        <div class="method_description">
+                          <p>Obtener la información básica de todas las posiciones existentes.</p>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div>
+
+                      <div onclick="window.location.href = &#39;#_posiciones_post&#39;" class="list-group-item">
+                        <span class="badge badge_post">post</span>
+
+                        <div class="method_description">
+                          <p>Crear una posición (opcionalmente se pueden indicar sus atributos y su plantilla autorizada).</p>
+
+                          <p>Es requerido tener el permiso para crear posiciones.</p>
+
+                          <p>Se valida:</p>
+
+                          <ul>
+                            <li>Que se especifique un nombre para la posición.</li>
+
+                            <li>Que el nombre de la posición no exceda de 80 caracteres.</li>
+
+                            <li>Que no exista otra posición con el mismo nombre en la misma organización.</li>
+
+                            <li>Que se especifique un ID de organización.</li>
+
+                            <li>Que el ID de la organización sea un número entero.</li>
+
+                            <li>Que exista la organización.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que exista la posición dentro de la misma
+                            organización.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que exista la posición dentro de la
+                            misma organización.</li>
+
+                            <li>Si se especifica un código para la posición, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código para la posición, que no exista otra posición con el mismo código en
+                            la misma organización.</li>
+
+                            <li>Que el tipo de relación laboral tenga alguno de los valores permitidos (&quot;Sindicalizado&quot;,
+                            &quot;No sindicalizado&quot;).</li>
+
+                            <li>Si se especifican atributos para la posición, que cada uno de los atributos que se pretenden
+                            asignar existan y apliquen para posiciones.</li>
+
+                            <li>Si se especifica plantilla autorizada para la posición, que cada uno de los tipos de plantilla que
+                            se pretenden habilitar existan.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que exista la descripción de puesto dentro de la
+                            misma organización.</li>
+                          </ul>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" tabindex="0" id="_posiciones_get">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+
+                        <h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> /posiciones</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="alert alert-info">
+                          <p>Obtener la información básica de todas las posiciones existentes.</p>
+                        </div>
+
+                        <div class="alert alert-warning">
+                          Secured by oauth_2_0
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#_posiciones_get_request" data-toggle="tab">Request</a>
+                          </li>
+
+                          <li>
+                            <a href="#_posiciones_get_response" data-toggle="tab">Response</a>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="_posiciones_get_request">
+                            <h3>Query Parameters</h3>
+
+                            <ul>
+                              <li>
+                                <strong>pagina</strong>: <em>(number )</em>
+
+                                <p>Opcional. Numero de página a regresar.</p>
+                              </li>
+
+                              <li>
+                                <strong>tamanoPagina</strong>: <em>(number- default: 20 )</em>
+
+                                <p>Opcional. Tamaño de la página a regresar. Solo es válido si se especifica el parámetro
+                                &quot;pagina&quot;.</p>
+                              </li>
+
+                              <li>
+                                <strong>orden</strong>: <em>(string- default: id )</em>
+
+                                <p>Opcional. Nombre del campo que será el criterio para realizar el paginado de los resultados.
+                                Sólo es válido si se especifica el parámetro &quot;pagina&quot;</p>
+                              </li>
+
+                              <li>
+                                <strong>filtro</strong>: <em>(string )</em>
+
+                                <p>Filtrado de posiciones por código, nombre, atributo default (usualmente
+                                &quot;Departamento&quot;) o nombre y/o apellidos de alguno de los empleados que la ocupan. Si no se
+                                especifica regresa el listado completo de posiciones.</p>
+                              </li>
+
+                              <li>
+                                <strong>idPosicionReporta</strong>: <em>(number )</em>
+
+                                <p>Opcional. Filtrar por el identificador de la posición a la que reportan estas posiciones dentro
+                                de la jerarquía organizacional.</p>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="tab-pane" id="_posiciones_get_response">
+                            <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+
+                            <p>Regresa una colección de posiciones.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>[
+  { &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;description&quot;: &quot;Posición&quot;,
+    &quot;properties&quot;: {
+     &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+     &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;nombreOrganizacion&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;codigo&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;idPosicionReporta&quot; : {&quot;type&quot; : &quot;number&quot;},
+     &quot;nombrePosicionReporta&quot; : {&quot;type&quot; : &quot;string&quot;},
+     &quot;atributoDefault&quot;: { &quot;type&quot;: &quot;object&quot;,
+                          &quot;description&quot;: &quot;Atributo default de la posición&quot;,
+                          &quot;properties&quot;: {
+                                         &quot;nombreAtributo&quot;: { &quot;type&quot;: &quot;string&quot; },
+                                         &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; },
+                                         &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; } 
+                                        }
+                        },
+     &quot;fechaCreacion&quot;: { &quot;type&quot;: &quot;date&quot; },
+     &quot;fechaUltimoCambio&quot;: { &quot;type&quot;: &quot;date&quot; }
+    }
+  }
+]            
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>[
+  {
+  &quot;id&quot;: 205,
+  &quot;nombre&quot;: &quot;Analista de Sistemas&quot;,
+  &quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+  &quot;codigo&quot;: &quot;ANA-SIS&quot;,
+  &quot;atributoDefault&quot;: {
+                        &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+                        &quot;referencia&quot;: &quot;D001&quot;,
+                        &quot;nombre&quot;: &quot;Sistemas&quot;
+                      },
+  &quot;fechaCreacion&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+  &quot;fechaUltimoCambio&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;
+  },
+  {
+  &quot;id&quot;: 198,
+  &quot;nombre&quot;: &quot;Gerente de Sistemas&quot;,
+  &quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+  &quot;codigo&quot;: &quot;GTE-SIS&quot;,
+  &quot;atributoDefault&quot;: {
+                        &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+                        &quot;referencia&quot;: &quot;D001&quot;,
+                        &quot;nombre&quot;: &quot;Sistemas&quot;
+                      },
+  &quot;fechaCreacion&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+  &quot;fechaUltimoCambio&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;
+  },
+  ...
+]
+    
+o cuando es llamado con paginación...
+    
+{
+pagina: 1,
+tamanoPagina: 20,
+totalRegistros: 60,
+data: 
+[
+  {
+  &quot;id&quot;: 205,
+  &quot;nombre&quot;: &quot;Analista de Sistemas&quot;,
+  &quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+  &quot;codigo&quot;: &quot;ANA-SIS&quot;,
+  &quot;idPosicionReporta&quot; : 198,
+  &quot;nombrePosicionReporta&quot; : &quot;Gerente de Sistemas&quot;,
+  &quot;atributoDefault&quot;: {
+                        &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+                        &quot;referencia&quot;: &quot;D001&quot;,
+                        &quot;nombre&quot;: &quot;Sistemas&quot;
+                      },
+  &quot;fechaCreacion&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+  &quot;fechaUltimoCambio&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;
+  },
+ {
+ &quot;id&quot;: 198,
+ &quot;nombre&quot;: &quot;Gerente de Sistemas&quot;,
+ &quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+ &quot;codigo&quot;: &quot;GTE-SIS&quot;,
+  &quot;idPosicionReporta&quot; : null,
+  &quot;nombrePosicionReporta&quot; : null,
+ &quot;atributoDefault&quot;: {
+                      &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+                      &quot;referencia&quot;: &quot;D001&quot;,
+                      &quot;nombre&quot;: &quot;Sistemas&quot;
+                    },
+ &quot;fechaCreacion&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+ &quot;fechaUltimoCambio&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;
+ },
+ ...
+]  
+}                                                              
+</code>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" tabindex="0" id="_posiciones_post">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+
+                        <h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> /posiciones</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="alert alert-info">
+                          <p>Crear una posición (opcionalmente se pueden indicar sus atributos y su plantilla autorizada).</p>
+
+                          <p>Es requerido tener el permiso para crear posiciones.</p>
+
+                          <p>Se valida:</p>
+
+                          <ul>
+                            <li>Que se especifique un nombre para la posición.</li>
+
+                            <li>Que el nombre de la posición no exceda de 80 caracteres.</li>
+
+                            <li>Que no exista otra posición con el mismo nombre en la misma organización.</li>
+
+                            <li>Que se especifique un ID de organización.</li>
+
+                            <li>Que el ID de la organización sea un número entero.</li>
+
+                            <li>Que exista la organización.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que exista la posición dentro de la misma
+                            organización.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que exista la posición dentro de la
+                            misma organización.</li>
+
+                            <li>Si se especifica un código para la posición, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código para la posición, que no exista otra posición con el mismo código en
+                            la misma organización.</li>
+
+                            <li>Que el tipo de relación laboral tenga alguno de los valores permitidos (&quot;Sindicalizado&quot;,
+                            &quot;No sindicalizado&quot;).</li>
+
+                            <li>Si se especifican atributos para la posición, que cada uno de los atributos que se pretenden
+                            asignar existan y apliquen para posiciones.</li>
+
+                            <li>Si se especifica plantilla autorizada para la posición, que cada uno de los tipos de plantilla que
+                            se pretenden habilitar existan.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que exista la descripción de puesto dentro de la
+                            misma organización.</li>
+                          </ul>
+                        </div>
+
+                        <div class="alert alert-warning">
+                          Secured by oauth_2_0
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#_posiciones_post_request" data-toggle="tab">Request</a>
+                          </li>
+
+                          <li>
+                            <a href="#_posiciones_post_response" data-toggle="tab">Response</a>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="_posiciones_post_request">
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>{ &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;description&quot;: &quot;Posición&quot;,
+  &quot;properties&quot;: {
+    &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;maxLength&quot;: 80, &quot;required&quot;: true },
+    &quot;idOrganizacion&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true },
+    &quot;idPosicionReporta&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;codigoPosicionReporta&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;maxLength&quot;: 60 },
+    &quot;codigoPosicion&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;maxLength&quot;: 60 },
+    &quot;idRelacionLaboral&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;Sindicalizado&quot;, &quot;No sindicalizado&quot;] },
+    &quot;atributos&quot;: [
+                  { &quot;type&quot;: &quot;object&quot;,
+                    &quot;description&quot;: &quot;Atributo de una posición&quot;,
+                    &quot;properties&quot;: {
+                      &quot;idAtributo&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true },
+                      &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; }
+                    }
+                  }
+                 ],
+    &quot;plantillaAutorizada&quot;: [
+                            { &quot;type&quot;: &quot;object&quot;,
+                              &quot;description&quot;: &quot;Plantilla autorizada de una posición&quot;,
+                              &quot;properties&quot;: {
+                                &quot;id&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true },
+                                &quot;cantidad&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true }
+                              }
+                            }
+                           ],
+    &quot;idDescripcionPuesto&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;accesoPRO&quot;: { &quot;type&quot;: &quot;boolean&quot; }
+  }
+}                       
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+&quot;nombre&quot;: &quot;Contador Público&quot;,
+&quot;idOrganizacion&quot;: 1,
+&quot;idPosicionReporta&quot;: 2,
+&quot;codigoPosicionReporta&quot;: &quot;DIR-GRAL&quot;,
+&quot;codigoPosicion&quot;: &quot;CP&quot;,
+&quot;idRelacionLaboral&quot;: &quot;No sindicalizado&quot;,
+&quot;atributos&quot;: [
+              {
+              &quot;idAtributo&quot;: 1,
+              &quot;id&quot;: 1,
+              &quot;referencia&quot;: &quot;D001&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 2,
+              &quot;id&quot;: 2,
+              &quot;referencia&quot;: &quot;NJ001&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 3,
+              &quot;id&quot;: 3,
+              &quot;referencia&quot;: &quot;R001&quot;
+              }
+             ],
+&quot;plantillaAutorizada&quot;: [
+                        {
+                        &quot;id&quot;: 1,
+                        &quot;cantidad&quot;: 1
+                        }
+                       ],
+&quot;idDescripcionPuesto&quot;: 4,
+&quot;accesoPRO&quot;: true
+}
+</code>
+</pre>
+                          </div>
+
+                          <div class="tab-pane" id="_posiciones_post_response">
+                            <h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2>
+
+                            <p>La posición se creó correctamente.</p>
+
+                            <h3>Headers</h3>
+
+                            <ul>
+                              <li>
+                                <strong>Location</strong>: <em>(string )</em>
+
+                                <p>Url para acceder a la nueva posición.</p>
+                              </li>
+                            </ul>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>{ &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;description&quot;: &quot;Posición&quot;,
+  &quot;properties&quot;: {
+    &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;idOrganizacion&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombreOrganizacion&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;codigo&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;relacionLaboral&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;idPosicionReporta&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombrePosicionReporta&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;atributos&quot;: [
+                  { &quot;type&quot;: &quot;object&quot;,
+                    &quot;description&quot;: &quot;Atributo de una posición&quot;,
+                    &quot;properties&quot;: {
+                      &quot;idAtributo&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;nombreAtributo&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; }
+                    }
+                  }
+                 ],
+    &quot;plantillaAutorizada&quot;: [
+                            { &quot;type&quot;: &quot;object&quot;,
+                              &quot;description&quot;: &quot;Plantilla autorizada de una posición&quot;,
+                              &quot;properties&quot;: {
+                                &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                                &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+                                &quot;cantidad&quot;: { &quot;type&quot;: &quot;number&quot; }
+                              }
+                            }
+                           ],
+    &quot;idDescripcionPuesto&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;descripcionPuesto&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;fechaCreacion&quot;: { &quot;type&quot;: &quot;date&quot; },
+    &quot;accesoPRO&quot;: { &quot;type&quot;: &quot;boolean&quot; }
+  }
+}
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+&quot;id&quot;: 205,
+&quot;nombre&quot;: &quot;Contador Público&quot;,
+&quot;idOrganizacion&quot;: 1,
+&quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+&quot;codigo&quot;: &quot;CP&quot;,
+&quot;relacionLaboral&quot;: &quot;No sindicalizado&quot;,
+&quot;idPosicionReporta&quot;: 2,
+&quot;nombrePosicionReporta&quot;: &quot;Director General&quot;,
+&quot;atributos&quot;: [
+              {
+              &quot;idAtributo&quot;: 1,
+              &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+              &quot;id&quot;: 1,
+              &quot;referencia&quot;: &quot;D001&quot;,
+              &quot;nombre&quot;: &quot;Administración&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 2,
+              &quot;nombreAtributo&quot;: &quot;Nivel jerárquico&quot;,
+              &quot;id&quot;: 2,
+              &quot;referencia&quot;: &quot;NJ001&quot;,
+              &quot;nombre&quot;: &quot;Empleado&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 3,
+              &quot;nombreAtributo&quot;: &quot;Región&quot;,
+              &quot;id&quot;: 3,
+              &quot;referencia&quot;: &quot;R001&quot;,
+              &quot;nombre&quot;: &quot;Norte&quot;
+              }
+             ],
+&quot;plantillaAutorizada&quot;: [
+                        {
+                        &quot;id&quot;: 1,
+                        &quot;nombre&quot;: &quot;Planta&quot;,
+                        &quot;cantidad&quot;: 1
+                        }
+                       ],
+&quot;idDescripcionPuesto&quot;: 4,
+&quot;descripcionPuesto&quot;: &quot;Contador&quot;,
+&quot;fechaCreacion&quot;: &quot;Tue, 02 Jun 2015 10:07:00 GMT&quot;,
+&quot;accesoPRO&quot;: true
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+
+                            <p>No se tienen los permisos necesarios para crear posiciones.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 403,
+    &quot;message&quot;: &quot;No se tienen los permisos necesarios para crear posiciones.&quot;
+  }
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2>
+
+                            <p>Error de validación en los datos de la posición. Puede ocurrir si no se especificó un nombre, la
+                            longitud del nombre excede de 80 caracteres, ya existe una posición con el mismo nombre en la
+                            organización, no se especificó un ID de organización, no existe la organización, no existe la
+                            posición a la cual reporta, la longitud del código excede de 60 caracteres, la relación laboral no
+                            tiene alguno de los valores permitidos, alguno de los atributos no existe, alguno de los tipos de
+                            plantilla no existe o la descripción de puesto no existe.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 422,
+    &quot;message&quot;: &quot;Error de validación en los datos de la posición.&quot;
+  }
+}                      </code>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-white">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__posiciones__id_"><span class=
+                  "parent">/posiciones</span>/{id}</a> <span class="methods"><a href="#_posiciones__id__get"><span class=
+                  "badge badge_get">get </span></a> <a href="#_posiciones__id__post"><span class="badge badge_post">post
+                  </span></a> <a href="#_posiciones__id__delete"><span class="badge badge_delete">delete </span></a></span></h4>
+                </div>
+
+                <div id="panel__posiciones__id_" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="list-group">
+                      <div onclick="window.location.href = &#39;#_posiciones__id__get&#39;" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+
+                        <div class="method_description">
+                          <p>Obtener la información básica de una posición.</p>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div>
+
+                      <div onclick="window.location.href = &#39;#_posiciones__id__post&#39;" class="list-group-item">
+                        <span class="badge badge_post">post</span>
+
+                        <div class="method_description">
+                          <p>Actualiza la información de una posición.</p>
+
+                          <p>Es requerido tener el permiso para editar poosiciones.</p>
+
+                          <p>Se valida:</p>
+
+                          <ul>
+                            <li>Que se especifique un nombre para la posición.</li>
+
+                            <li>Que el nombre de la posición no exceda de 80 caracteres.</li>
+
+                            <li>Que no exista otra posición con el mismo nombre en la misma organización.</li>
+
+                            <li>Que se especifique un ID de organización.</li>
+
+                            <li>Que el ID de la organización sea un número entero.</li>
+
+                            <li>Que exista la organización.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que exista la posición dentro de la misma
+                            organización.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que exista la posición dentro de la
+                            misma organización.</li>
+
+                            <li>Si se especifica un código para la posición, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código para la posición, que no exista otra posición con el mismo código en
+                            la misma organización.</li>
+
+                            <li>Que el tipo de relación laboral tenga alguno de los valores permitidos (&quot;Sindicalizado&quot;,
+                            &quot;No sindicalizado&quot;).</li>
+
+                            <li>Si se especifican atributos para la posición, que cada uno de los atributos que se pretenden
+                            asignar existan y apliquen para posiciones.</li>
+
+                            <li>Si se especifica plantilla autorizada para la posición, que cada uno de los tipos de plantilla que
+                            se pretenden habilitar existan.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que exista la descripción de puesto dentro de la
+                            misma organización.</li>
+                          </ul>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div>
+
+                      <div onclick="window.location.href = &#39;#_posiciones__id__delete&#39;" class="list-group-item">
+                        <span class="badge badge_delete">delete</span>
+
+                        <div class="method_description">
+                          <p>Borrar una posición.</p>
+
+                          <p>Es requerido tener el permiso para borrar posiciones.</p>
+
+                          <p>Se valida:</p>
+
+                          <ul>
+                            <li>Que la posición no tenga otras posiciones relacionadas (que le reportan).</li>
+
+                            <li>Que no haya empleados que ocupen la posición.</li>
+                          </ul>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" tabindex="0" id="_posiciones__id__get">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+
+                        <h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class=
+                        "parent">/posiciones</span>/{id}</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="alert alert-info">
+                          <p>Obtener la información básica de una posición.</p>
+                        </div>
+
+                        <div class="alert alert-warning">
+                          Secured by oauth_2_0
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#_posiciones__id__get_request" data-toggle="tab">Request</a>
+                          </li>
+
+                          <li>
+                            <a href="#_posiciones__id__get_response" data-toggle="tab">Response</a>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="_posiciones__id__get_request">
+                            <h3>URI Parameters</h3>
+
+                            <ul>
+                              <li><strong>id</strong>: <em>required (string )</em></li>
+                            </ul>
+                          </div>
+
+                          <div class="tab-pane" id="_posiciones__id__get_response">
+                            <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+
+                            <p>Regresa una posición.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>{ &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;description&quot;: &quot;Posición&quot;,
+  &quot;properties&quot;: {
+    &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;nombreOrganizacion&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;codigo&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;atributoDefault&quot;: { &quot;type&quot;: &quot;object&quot;,
+                         &quot;description&quot;: &quot;Atributo default de la posición&quot;,
+                         &quot;properties&quot;: {
+                            &quot;nombreAtributo&quot;: { &quot;type&quot;:&quot;string&quot; },
+                           &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; },
+                           &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; } 
+                          }
+                       },
+    &quot;fechaCreacion&quot;: { &quot;type&quot;: &quot;date&quot; },
+    &quot;fechaUltimoCambio&quot;: { &quot;type&quot;: &quot;date&quot; }
+  }
+}
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+&quot;id&quot;: 205,
+&quot;nombre&quot;: &quot;Analista de Sistemas&quot;,
+&quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+&quot;codigo&quot;: &quot;ANA-SIS&quot;,
+&quot;atributoDefault&quot;: {
+                    &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+                    &quot;referencia&quot;: &quot;D001&quot;,
+                    &quot;nombre&quot;: &quot;Sistemas&quot;
+                   },
+&quot;fechaCreacion&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+&quot;fechaUltimoCambio&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2>
+
+                            <p>La petición no está formada correctamente.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 400,
+    &quot;message&quot;: &quot;La petición no está formada correctamente. El ID de la posición debe ser un número entero.&quot;
+  }
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2>
+
+                            <p>No se encuentra la posición.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 404,
+    &quot;message&quot;: &quot;No se encuentra la posición.&quot;
+  }
+}        
+</code>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" tabindex="0" id="_posiciones__id__post">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+
+                        <h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class=
+                        "parent">/posiciones</span>/{id}</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="alert alert-info">
+                          <p>Actualiza la información de una posición.</p>
+
+                          <p>Es requerido tener el permiso para editar poosiciones.</p>
+
+                          <p>Se valida:</p>
+
+                          <ul>
+                            <li>Que se especifique un nombre para la posición.</li>
+
+                            <li>Que el nombre de la posición no exceda de 80 caracteres.</li>
+
+                            <li>Que no exista otra posición con el mismo nombre en la misma organización.</li>
+
+                            <li>Que se especifique un ID de organización.</li>
+
+                            <li>Que el ID de la organización sea un número entero.</li>
+
+                            <li>Que exista la organización.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de posición a la cual reporta, que exista la posición dentro de la misma
+                            organización.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código de posición a la cual reporta, que exista la posición dentro de la
+                            misma organización.</li>
+
+                            <li>Si se especifica un código para la posición, que no exceda de 60 caracteres.</li>
+
+                            <li>Si se especifica un código para la posición, que no exista otra posición con el mismo código en
+                            la misma organización.</li>
+
+                            <li>Que el tipo de relación laboral tenga alguno de los valores permitidos (&quot;Sindicalizado&quot;,
+                            &quot;No sindicalizado&quot;).</li>
+
+                            <li>Si se especifican atributos para la posición, que cada uno de los atributos que se pretenden
+                            asignar existan y apliquen para posiciones.</li>
+
+                            <li>Si se especifica plantilla autorizada para la posición, que cada uno de los tipos de plantilla que
+                            se pretenden habilitar existan.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que sea un número entero.</li>
+
+                            <li>Si se especifica un ID de descripción de puesto, que exista la descripción de puesto dentro de la
+                            misma organización.</li>
+                          </ul>
+                        </div>
+
+                        <div class="alert alert-warning">
+                          Secured by oauth_2_0
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#_posiciones__id__post_request" data-toggle="tab">Request</a>
+                          </li>
+
+                          <li>
+                            <a href="#_posiciones__id__post_response" data-toggle="tab">Response</a>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="_posiciones__id__post_request">
+                            <h3>URI Parameters</h3>
+
+                            <ul>
+                              <li><strong>id</strong>: <em>required (string )</em></li>
+                            </ul>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>{ &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;description&quot;: &quot;Posición&quot;,
+  &quot;properties&quot;: {
+    &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;maxLength&quot;: 80, &quot;required&quot;: true },
+    &quot;idOrganizacion&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true },
+    &quot;idPosicionReporta&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;codigoPosicionReporta&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;maxLength&quot;: 60 },
+    &quot;codigoPosicion&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;maxLength&quot;: 60 },
+    &quot;idRelacionLaboral&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;Sindicalizado&quot;, &quot;No sindicalizado&quot;] },
+    &quot;atributos&quot;: [
+                  { &quot;type&quot;: &quot;object&quot;,
+                    &quot;description&quot;: &quot;Atributo de una posición&quot;,
+                    &quot;properties&quot;: {
+                      &quot;idAtributo&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true },
+                      &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; }
+                    }
+                  }
+                 ],
+    &quot;plantillaAutorizada&quot;: [
+                            { &quot;type&quot;: &quot;object&quot;,
+                              &quot;description&quot;: &quot;Plantilla autorizada de una posición&quot;,
+                              &quot;properties&quot;: {
+                                &quot;id&quot;: { &quot;type&quot;: &quot;number&quot;,   &quot;required&quot;: true },
+                                &quot;cantidad&quot;: { &quot;type&quot;: &quot;number&quot;, &quot;required&quot;: true }
+                              }
+                            }
+                           ],
+    &quot;idDescripcionPuesto&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;accesoPRO&quot;: { &quot;type&quot;: &quot;boolean&quot; }
+  }
+}                       
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+&quot;nombre&quot;: &quot;Contador Público&quot;,
+&quot;idOrganizacion&quot;: 1,
+&quot;idPosicionReporta&quot;: 2,
+&quot;codigoPosicionReporta&quot;: &quot;DIR-GRAL&quot;,
+&quot;codigoPosicion&quot;: &quot;CP&quot;,
+&quot;idRelacionLaboral&quot;: &quot;No sindicalizado&quot;,
+&quot;atributos&quot;: [
+              {
+              &quot;idAtributo&quot;: 1,
+              &quot;id&quot;: 1,
+              &quot;referencia&quot;: &quot;D001&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 2,
+              &quot;id&quot;: 2,
+              &quot;referencia&quot;: &quot;NJ001&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 3,
+              &quot;id&quot;: 3,
+              &quot;referencia&quot;: &quot;R001&quot;
+              }
+             ],
+&quot;plantillaAutorizada&quot;: [
+                        {
+                        &quot;id&quot;: 1,
+                        &quot;cantidad&quot;: 1
+                        }
+                       ],
+&quot;idDescripcionPuesto&quot;: 4,
+&quot;accesoPRO&quot;: true
+}
+</code>
+</pre>
+                          </div>
+
+                          <div class="tab-pane" id="_posiciones__id__post_response">
+                            <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+
+                            <p>La posición se actualizó correctamente.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>{ &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;description&quot;: &quot;Posición&quot;,
+   &quot;properties&quot;: {
+     &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+     &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;idOrganizacion&quot;: { &quot;type&quot;: &quot;number&quot; },
+     &quot;nombreOrganizacion&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;codigo&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;relacionLaboral&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;idPosicionReporta&quot;: { &quot;type&quot;: &quot;number&quot; },
+     &quot;nombrePosicionReporta&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;atributos&quot;: [
+                   { &quot;type&quot;: &quot;object&quot;,
+                     &quot;description&quot;: &quot;Atributo de una posición&quot;,
+                     &quot;properties&quot;: {
+                       &quot;idAtributo&quot;: { &quot;type&quot;: &quot;number&quot; },
+                       &quot;nombreAtributo&quot;: { &quot;type&quot;: &quot;string&quot; },
+                       &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                       &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; },
+                       &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; }
+                     }
+                   }
+                  ],
+     &quot;plantillaAutorizada&quot;: [
+                             { &quot;type&quot;: &quot;object&quot;,
+                               &quot;description&quot;: &quot;Plantilla autorizada de una posición&quot;,
+                               &quot;properties&quot;: {
+                                 &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                                 &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+                                 &quot;cantidad&quot;: { &quot;type&quot;: &quot;number&quot;  }
+                               }
+                             }
+                            ],
+     &quot;idDescripcionPuesto&quot;: { &quot;type&quot;: &quot;number&quot; },
+     &quot;descripcionPuesto&quot;: { &quot;type&quot;: &quot;string&quot; },
+     &quot;fechaCreacion&quot;: { &quot;type&quot;: &quot;date&quot; },
+     &quot;fechaUltimoCambio&quot;: { &quot;type&quot;: &quot;date&quot; },
+     &quot;accesoPRO&quot;: { &quot;type&quot;: &quot;boolean&quot; }
+   }
+ }
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+&quot;id&quot;: 205,
+&quot;nombre&quot;: &quot;Contador Público&quot;,
+&quot;idOrganizacion&quot;: 1,
+&quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+&quot;codigo&quot;: &quot;CP&quot;,
+&quot;relacionLaboral&quot;: &quot;No sindicalizado&quot;,
+&quot;idPosicionReporta&quot;: 2,
+&quot;nombrePosicionReporta&quot;: &quot;Director General&quot;,
+&quot;atributos&quot;: [
+              {
+              &quot;idAtributo&quot;: 1,
+              &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+              &quot;id&quot;: 1,
+              &quot;referencia&quot;: &quot;D001&quot;,
+              &quot;nombre&quot;: &quot;Administración&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 2,
+              &quot;nombreAtributo&quot;: &quot;Nivel jerárquico&quot;,
+              &quot;id&quot;: 2,
+              &quot;referencia&quot;: &quot;NJ001&quot;,
+              &quot;nombre&quot;: &quot;Empleado&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 3,
+              &quot;nombreAtributo&quot;: &quot;Región&quot;,
+              &quot;id&quot;: 3,
+              &quot;referencia&quot;: &quot;R001&quot;,
+              &quot;nombre&quot;: &quot;Norte&quot;
+              }
+             ],
+&quot;plantillaAutorizada&quot;: [
+                        {
+                        &quot;id&quot;: 1,
+                        &quot;nombre&quot;: &quot;Planta&quot;,
+                        &quot;cantidad&quot;: 1
+                        }
+                       ],
+&quot;idDescripcionPuesto&quot;: 4,
+&quot;descripcionPuesto&quot;: &quot;Contador&quot;,
+&quot;fechaCreacion&quot;: &quot;Tue, 02 Jun 2015 10:07:00 GMT&quot;,
+&quot;fechaUltimoCambio&quot;: &quot;Tue, 02 Jun 2015 11:03:00 GMT&quot;,
+&quot;accesoPRO&quot;: true
+}                  
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+
+                            <p>No se tienen los permisos necesarios para editar posiciones.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 403,
+    &quot;message&quot;: &quot;No se tienen los permisos necesarios para editar posiciones.&quot;
+  }
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2>
+
+                            <p>Error de validación en los datos de la posición. Puede ocurrir si no se especificó un nombre, la
+                            longitud del nombre excede de 80 caracteres, ya existe una posición con el mismo nombre en la
+                            organización, no se especificó un ID de organización, no existe la organización, no existe la
+                            posición a la cual reporta, la longitud del código excede de 60 caracteres, la relación laboral no
+                            tiene alguno de los valores permitidos, alguno de los atributos no existe, alguno de los tipos de
+                            plantilla no existe o la descripción de puesto no existe.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 422,
+    &quot;message&quot;: &quot;Error de validación en los datos de la posición.&quot;
+  }
+}                 
+</code>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" tabindex="0" id="_posiciones__id__delete">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+
+                        <h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class=
+                        "parent">/posiciones</span>/{id}</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="alert alert-info">
+                          <p>Borrar una posición.</p>
+
+                          <p>Es requerido tener el permiso para borrar posiciones.</p>
+
+                          <p>Se valida:</p>
+
+                          <ul>
+                            <li>Que la posición no tenga otras posiciones relacionadas (que le reportan).</li>
+
+                            <li>Que no haya empleados que ocupen la posición.</li>
+                          </ul>
+                        </div>
+
+                        <div class="alert alert-warning">
+                          Secured by oauth_2_0
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#_posiciones__id__delete_request" data-toggle="tab">Request</a>
+                          </li>
+
+                          <li>
+                            <a href="#_posiciones__id__delete_response" data-toggle="tab">Response</a>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="_posiciones__id__delete_request">
+                            <h3>URI Parameters</h3>
+
+                            <ul>
+                              <li><strong>id</strong>: <em>required (string )</em></li>
+                            </ul>
+                          </div>
+
+                          <div class="tab-pane" id="_posiciones__id__delete_response">
+                            <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+
+                            <p>La posición se borró correctamente.</p>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+
+                            <p>No se tienen los permisos necesarios para borrar posiciones.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 403,
+    &quot;message&quot;: &quot;No se tienen los permisos necesarios para borrar posiciones.&quot;
+  }
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2>
+
+                            <p>No es posible borrar la posición.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 405,
+    &quot;message&quot;: &quot;No es posible borrar la posición porque tiene posiciones o empleados relacionados.&quot;
+  }
+}      
+</code>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-white">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href=
+                  "#panel__posiciones__id__detalle"><span class="parent">/posiciones/{id}</span>/detalle</a> <span class=
+                  "methods"><a href="#_posiciones__id__detalle_get"><span class="badge badge_get">get </span></a></span></h4>
+                </div>
+
+                <div id="panel__posiciones__id__detalle" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="list-group">
+                      <div onclick="window.location.href = &#39;#_posiciones__id__detalle_get&#39;" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+
+                        <div class="method_description">
+                          <p>Obtener la información detallada de una posición.</p>
+
+                          <p>Es requerido tener el permiso para consultar posiciones.</p>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" tabindex="0" id="_posiciones__id__detalle_get">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
+
+                        <h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class=
+                        "parent">/posiciones/{id}</span>/detalle</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="alert alert-info">
+                          <p>Obtener la información detallada de una posición.</p>
+
+                          <p>Es requerido tener el permiso para consultar posiciones.</p>
+                        </div>
+
+                        <div class="alert alert-warning">
+                          Secured by oauth_2_0
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                          <li class="active">
+                            <a href="#_posiciones__id__detalle_get_request" data-toggle="tab">Request</a>
+                          </li>
+
+                          <li>
+                            <a href="#_posiciones__id__detalle_get_response" data-toggle="tab">Response</a>
+                          </li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="_posiciones__id__detalle_get_request">
+                            <h3>URI Parameters</h3>
+
+                            <ul>
+                              <li><strong>id</strong>: <em>required (string )</em></li>
+                            </ul>
+                          </div>
+
+                          <div class="tab-pane" id="_posiciones__id__detalle_get_response">
+                            <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+
+                            <p>Regresa una posición.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Schema</strong>:</p>
+                            <pre>
+<code>{ &quot;$schema&quot;: &quot;http://json-schema.org/schema&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;description&quot;: &quot;Posición&quot;,
+  &quot;properties&quot;: {
+    &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;idOrganizacion&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombreOrganizacion&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;codigo&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;relacionLaboral&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;idPosicionReporta&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;nombrePosicionReporta&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;atributos&quot;: [
+                  { &quot;type&quot;: &quot;object&quot;,
+                    &quot;description&quot;: &quot;Atributo de una posición&quot;,
+                    &quot;properties&quot;: {
+                      &quot;idAtributo&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;nombreAtributo&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;referencia&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; }
+                    }
+                  }
+                 ],
+    &quot;plantillaAutorizada&quot;: [
+                            { &quot;type&quot;: &quot;object&quot;,
+                              &quot;description&quot;: &quot;Plantilla autorizada de una posición&quot;,
+                              &quot;properties&quot;: {
+                                &quot;id&quot;: { &quot;type&quot;: &quot;number&quot; },
+                                &quot;nombre&quot;: { &quot;type&quot;: &quot;string&quot; },
+                                &quot;cantidad&quot;: { &quot;type&quot;: &quot;number&quot; }
+                              }
+                            }
+                           ],
+    &quot;idDescripcionPuesto&quot;: { &quot;type&quot;: &quot;number&quot; },
+    &quot;descripcionPuesto&quot;: { &quot;type&quot;: &quot;string&quot; },
+    &quot;fechaCreacion&quot;: { &quot;type&quot;: &quot;date&quot; },
+    &quot;fechaUltimoCambio&quot;: { &quot;type&quot;: &quot;date&quot; },
+    &quot;accesoPRO&quot;: { &quot;type&quot;: &quot;boolean&quot; }
+  }
+}
+</code>
+</pre>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+&quot;id&quot;: 205,
+&quot;nombre&quot;: &quot;Analista de Sistemas&quot;,
+&quot;idOrganizacion&quot;: 1,
+&quot;nombreOrganizacion&quot;: &quot;Servicios ITX, S.C.&quot;,
+&quot;codigo&quot;: &quot;ANA-SIS&quot;,
+&quot;relacionLaboral&quot;: &quot;No sindicalizado&quot;,
+&quot;idPosicionReporta&quot;: 198,
+&quot;nombrePosicionReporta&quot;: &quot;Gerente de Sistemas&quot;,
+&quot;atributos&quot;: [
+              {
+              &quot;idAtributo&quot;: 1,
+              &quot;nombreAtributo&quot;: &quot;Departamento&quot;,
+              &quot;id&quot;: 1,
+              &quot;referencia&quot;: &quot;D001&quot;,
+              &quot;nombre&quot;: &quot;Sistemas&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 2,
+              &quot;nombreAtributo&quot;: &quot;Nivel jerárquico&quot;,
+              &quot;id&quot;: 2,
+              &quot;referencia&quot;: &quot;NJ001&quot;,
+              &quot;nombre&quot;: &quot;Empleado&quot;
+              },
+              {
+              &quot;idAtributo&quot;: 3,
+              &quot;nombreAtributo&quot;: &quot;Región&quot;,
+              &quot;id&quot;: 3,
+              &quot;referencia&quot;: &quot;R001&quot;,
+              &quot;nombre&quot;: &quot;Norte&quot;
+              }
+             ],
+&quot;plantillaAutorizada&quot;: [
+                        {
+                        &quot;id&quot;: 1,
+                        &quot;nombre&quot;: &quot;Planta&quot;,
+                        &quot;cantidad&quot;: 3
+                        },
+                        {
+                        &quot;id&quot;: 2,
+                        &quot;nombre&quot;: &quot;Prácticas profesionales&quot;,
+                        &quot;cantidad&quot;: 2
+                        }
+                       ],
+&quot;idDescripcionPuesto&quot;: 45,
+&quot;descripcionPuesto&quot;: &quot;Analista de Sistemas&quot;,
+&quot;fechaCreacion&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+&quot;fechaUltimoCambio&quot;: &quot;Thu, 01 Jan 2015 00:00:00 GMT&quot;,
+&quot;accesoPRO&quot;: true
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2>
+
+                            <p>La petición no está formada correctamente.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 400,
+    &quot;message&quot;: &quot;La petición no está formada correctamente. El ID de la posición debe ser un número entero.&quot;
+  }
+}
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+
+                            <p>No se tienen los permisos necesarios para consultar posiciones.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 403,
+    &quot;message&quot;: &quot;No se tienen los permisos necesarios para consultar posiciones.&quot;
+  }
+}        
+</code>
+</pre>
+
+                            <h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2>
+
+                            <p>No se encuentra la posición.</p>
+
+                            <h3>Body</h3>
+
+                            <p><strong>Type: application/json</strong></p>
+
+                            <p><strong>Example</strong>:</p>
+                            <pre>
+<code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: 404,
+    &quot;message&quot;: &quot;No se encuentra la posición.&quot;
+  }
+}              
+</code>
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div id="sidebar" class="hidden-print affix" role="complementary">
+          <ul class="nav nav-pills nav-stacked">
+            <li>
+              <a href="#_posiciones">/posiciones</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

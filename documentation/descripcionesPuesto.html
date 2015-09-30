@@ -1,0 +1,698 @@
+<!DOCTYPE HTML><html><head><title>Workbeat API - Descripciones de puesto API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Workbeat API - Descripciones de puesto API documentation <small>version v1</small></h1><p>https://api.workbeat.com/v1/org/</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_descripcionesPuesto" class="panel-title">/descripcionesPuesto</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__descripcionesPuesto"><span class="parent"></span>/descripcionesPuesto</a> <span class="methods"><a href="#_descripcionesPuesto_post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_descripcionesPuesto_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__descripcionesPuesto" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_descripcionesPuesto_post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Crear una descripción del puesto.</p><p>Se debe validar que: -No deberan existir descripciones de puesto repetidas. -Una descripción d epuesto debe estar ligada a una organización.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_descripcionesPuesto_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener un listado de descripciones de puesto.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_descripcionesPuesto_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/descripcionesPuesto</h4></div><div class="modal-body"><div class="alert alert-info"><p>Crear una descripción del puesto.</p><p>Se debe validar que: -No deberan existir descripciones de puesto repetidas. -Una descripción d epuesto debe estar ligada a una organización.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_descripcionesPuesto_post_request" data-toggle="tab">Request</a></li><li><a href="#_descripcionesPuesto_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_descripcionesPuesto_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Descripción de puesto",
+  "properties": {
+    "nombre": { "type": "string"},
+     "idOrganizacion": { "type": "number"},
+     "atributos": [
+                    {
+                     "idAtributo": { "type": "number"},
+                     "id": { "type": "number"},
+                     "referencia": { "type": "string"}
+                    }
+                  ],
+     "mision": { "type": "string"},
+     "descripcion": { "type": "string"},
+     "responsabilidades": { "type": "string"},
+     "edadMinima": { "type": "number"},
+     "edadMaxima": { "type": "number"},
+     "nivelEstudios": "Profesional",
+     "estadoCivil": { "type": "string"},
+     "estatusEstudios": { "type": "string"},
+     "sexo": { "type": "string"},
+     "disponibilidadViajar": { "type": "string"},
+     "disponibilidadCambiarResidencia":{ "type": "string"},
+     "otrosRequerimientos": { "type": "string"},
+     "areasExperiencia": 
+                   [
+                    {
+                      "id": { "type": "number" },
+                      "nombre": { "type": "number" }
+                    }
+                 ],                 
+    "idPerfilPsicometrico": { "type": "number"}
+                  
+      }
+  }
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+ "nombre": "Contador público",
+       "idOrganizacion": 1,
+       "atributos": [
+    {
+    "idAtributo": 1,
+    "id": 1,
+    "referencia": "NJ001"
+    }
+   ],
+      "mision": "Llevar al día la contabilidad de la empresa.”,
+      "descripcion": "Es la persona encargada de llevar todos los aspectos contables de la empresa.",
+      "responsabilidades": "Mantener al día los estados de cuenta de la empresa y dar seguimiento a todos los trámites ante las diversas instituciones y autoridades que se requiera.",
+      "edadMinima": 35,
+      "edadMaxima": 50,
+      "nivelEstudios": "Profesional",
+     "estadoCivil": "CAS",
+     "estatusEstudios": "Titulado",
+       "sexo": "M",
+        "disponibilidadViajar": true,
+      "disponibilidadCambiarResidencia": false,
+     "otrosRequerimientos": "Contar con VISA vigente y carro propio.",
+       "areasExperiencia": 
+                    [
+                      {
+                        "id": 103,
+                        "anios": 4
+                      }
+                    ],
+  "idPerfilPsicometrico": 1005
+   }
+</code></pre></div><div class="tab-pane" id="_descripcionesPuesto_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Regresa la información detallada del empleado de nómina correctamente.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Descripción de puesto",
+  "properties": {
+    "id": { "type": "number"},
+    "nombre": { "type": "string"},
+     "idOrganizacion": { "type": "number"},
+     "nombreOrganizacion": { "type": "string"},
+     "atributos": [
+                 {
+                  "idAtributo": { "type": "number"},
+                  "nombreAtributo": { "type": "string"},
+                  "id": { "type": "number"},
+                  "referencia": { "type": "string"},
+                  "nombre": { "type": "string"}
+                 }
+               ],
+     "mision": { "type": "string"},
+     "descripcion": { "type": "string"},
+     "responsabilidades": { "type": "string"},
+     "edadMinima": { "type": "number"},
+     "edadMaxima": { "type": "number"},
+     "nivelEstudios": "Profesional",
+     "estadoCivil": { "type": "string"},
+     "estatusEstudios": { "type": "string"},
+     "sexo": { "type": "string"},
+     "disponibilidadViajar": { "type": "string"},
+     "disponibilidadCambiarResidencia":{ "type": "string"},
+     "otrosRequerimientos": { "type": "string"},
+     "areasExperiencia": 
+                [
+                 {
+                   "id": { "type": "number" },
+                   "nombre": { "type": "number" },
+                   "anios": { "type": "number" }
+                 }
+              ],                 
+    "idPerfilPsicometrico": { "type": "number"},
+    "perfilPsicometrico": { "type": "string"},
+    "fechaCreacion": { "type": "Date"}
+               
+   }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": 205,
+  "nombre": "Contador público",
+  "idOrganizacion": 1,
+  "nombreOrganizacion": "Servicios ITX, S.C.",
+  "atributos": [
+                {
+                  "idAtributo": 1,
+                  "nombreAtributo": "Nivel jerárquico",
+                  "id": 1,
+                  "referencia": "NJ001",
+                  "nombre": "Empleado"
+                 }
+               ],
+  "mision": "Llevar al día la contabilidad de la empresa.”,
+  "descripcion": "Es la persona encargada de llevar todos los aspectos contables de la empresa.",
+  "responsabilidades": "Mantener al día los estados de cuenta de la empresa y dar seguimiento a todos los trámites ante las diversas instituciones y autoridades que se requiera.",
+  "edadMinima": 35,
+  "edadMaxima": 50,
+  "nivelEstudios": "Profesional",
+  "estadoCivil": "CAS",
+  "estatusEstudios": "Titulado",
+  "sexo": "M",
+  "disponibilidadViajar": true,
+  "disponibilidadCambiarResidencia": false,
+  "otrosRequerimientos": "Contar con VISA vigente y carro propio.",
+        "areasExperiencia": 
+              [
+                {
+                  "id": 103,
+                  "anios": 4
+                }
+              ],
+  "idPerfilPsicometrico": 1005,
+ "perfilPsicometrico": "Contador público",
+ "fechaCreacion": "Mon, 20 Jul 2015 10:07:00 GMT"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para crear descripciones de puesto.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para crear descripciones de puesto."
+  }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>Si alguna validación no fue exitosa, muestra un mensaje de error.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 422,
+    "message": "Error de validación en los datos de la desripción del puesto."
+  }
+}  
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_descripcionesPuesto_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/descripcionesPuesto</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener un listado de descripciones de puesto.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_descripcionesPuesto_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_descripcionesPuesto_get_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Regresa un listado de las descripciones de puesto.</p><p>Validar que: -Sólo debe tener un valor si se especifica el parámetro “pagina”. -Debe tener como valor alguno de los datos de las descripciones de puesto incluidos en la respuesta. -Si se especifica un valor para el parámetro “pagina” y no se indica este parámetro, su valor default será “id”. -Si se especifica un valor para el parámetro “pagina” y no se indica este parámetro, su valor default será 20.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Listado de Descripciones de puesto",
+  "properties": {
+     "id": { "type": "number"},
+     "nombre": { "type": "string" },
+     "nombreOrganizacion": { "type": "string" },
+     "atributoDefault": { 
+                          "nombreAtributo": { "type": "string" },
+                          "referencia": { "type": "string" },
+                          "nombre": { "type": "string" } 
+                         },
+     "perfilPsicometrico": { "type": "string" },
+     "fechaCreacion": { "type": "date" },
+     "fechaUltimoCambio": { "type": "date" }
+         }
+       }
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+  "id": 205,
+  "nombre": "Analista de Sistemas",
+  "nombreOrganizacion": "Servicios ITX, S.C.",
+  "atributoDefault": {
+                      "nombreAtributo": "Nivel Jerarquico",
+                      "referencia": "NJ001",
+                      "nombre": "Empleado"
+                     },
+  "perfilPsicometrico": "Analista",
+  "fechaCreacion": "Thu, 01 Jan 2015 00:00:00 GMT",
+  "fechaUltimoCambio": "Thu, 01 Jan 2015 00:00:00 GMT"
+  },
+  {
+  "id": 198,
+  "nombre": "Gerente de Sistemas",
+  "nombreOrganizacion": "Servicios ITX, S.C.",
+  "atributoDefault": {
+                      "nombreAtributo": "Nivel Jerarquico",
+                      "referencia": "NJ001",
+                      "nombre": "Gerente"
+                     },
+  "perfilPsicometrico": "Gerente de area",
+  "fechaCreacion": "Thu, 01 Jan 2015 00:00:00 GMT",
+  "fechaUltimoCambio": "Thu, 01 Jan 2015 00:00:00 GMT"
+  },
+  ...
+]
+
+o cuando es llamado con paginación...
+
+{
+  pagina: 1,
+  tamanoPagina: 20,
+  totalRegistros: 60,
+  data: 
+    [
+      {
+       "id": 205,
+       "nombre": "Analista de Sistemas",
+       "nombreOrganizacion": "Servicios ITX, S.C.",
+       "atributoDefault": {
+                          "nombreAtributo": "Nivel Jerarquico",
+                      "referencia": "NJ001",
+                      "nombre": "Empleado"
+                     },
+      "perfilPsicometrico": "Analista",
+      "fechaCreacion": "Thu, 01 Jan 2015 00:00:00 GMT",
+      "fechaUltimoCambio": "Thu, 01 Jan 2015 00:00:00 GMT"
+      },
+      {
+       "id": 198,
+       "nombre": "Gerente de Sistemas",
+       "codigo": "GTE-SIS",
+       "atributoDefault": {
+                            "nombreAtributo": "Nivel Jerarquico",
+                            "referencia": "NJ001",
+                            "nombre": "Gerente"
+                           },
+    "perfilPsicometrico": "Gerente de area",
+    "fechaCreacion": "Thu, 01 Jan 2015 00:00:00 GMT",
+    "fechaUltimoCambio": "Thu, 01 Jan 2015 00:00:00 GMT"
+      },
+      ...
+    ]        
+
+      
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__descripcionesPuesto__id_"><span class="parent">/descripcionesPuesto</span>/{id}</a> <span class="methods"><a href="#_descripcionesPuesto__id__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_descripcionesPuesto__id__delete"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#_descripcionesPuesto__id__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__descripcionesPuesto__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_descripcionesPuesto__id__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Editar una descripción de puesto.</p><p>Validar que: -Que exista un perfil psicométrico con este ID. -No Longitud máxima es de 100 caracteres. -No debe existir otra descripción de puesto con el mismo nombre en la organización. -Que exista una organización con este ID. -Por cada atributo a asignar se debe especificar ya sea el ID o la referencia del elemento a asignar. -Nivel de estudios: Sólo se aceptan los valores “Primaria”, “Secundaria”, “Carrera técnica”, “Preparatoria”, “Profesional”, “Especialidad”, “Maestría”, “Doctorado” o “No especificado”. -Sólo se aceptan los valores “NE”, “SOL”, “CAS”, “VIU”, “DIV”, “UL” o “SEP”. -Sólo se aceptan los valores “Trunco”, “Pasante” o “Titulado”. -Sólo se aceptan los valores “NE”, “M” o “F”.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_descripcionesPuesto__id__delete'" class="list-group-item"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Borrar una descripción de puesto.</p><p>Es requerido tener el permiso para borrar descripciones de puesto.</p><p>Se valida:</p><ul><li>Que la descripción de puesto no tenga posiciones relacionadas.</li><li>Que la descripción de puesto no tenga empleados relacionados.</li></ul></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_descripcionesPuesto__id__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información básica de una descripción de puesto.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_descripcionesPuesto__id__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/descripcionesPuesto</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Editar una descripción de puesto.</p><p>Validar que: -Que exista un perfil psicométrico con este ID. -No Longitud máxima es de 100 caracteres. -No debe existir otra descripción de puesto con el mismo nombre en la organización. -Que exista una organización con este ID. -Por cada atributo a asignar se debe especificar ya sea el ID o la referencia del elemento a asignar. -Nivel de estudios: Sólo se aceptan los valores “Primaria”, “Secundaria”, “Carrera técnica”, “Preparatoria”, “Profesional”, “Especialidad”, “Maestría”, “Doctorado” o “No especificado”. -Sólo se aceptan los valores “NE”, “SOL”, “CAS”, “VIU”, “DIV”, “UL” o “SEP”. -Sólo se aceptan los valores “Trunco”, “Pasante” o “Titulado”. -Sólo se aceptan los valores “NE”, “M” o “F”.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_descripcionesPuesto__id__post_request" data-toggle="tab">Request</a></li><li><a href="#_descripcionesPuesto__id__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_descripcionesPuesto__id__post_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Editar Descripción de puesto",
+  "properties": {
+    "nombre": { "type": "string"},
+     "idOrganizacion": { "type": "number"},
+     "atributos": [
+                    {
+                     "idAtributo": { "type": "number"},
+                     "id": { "type": "number"},
+                     "referencia": { "type": "string"}
+                    }
+                  ],
+     "mision": { "type": "string"},
+     "descripcion": { "type": "string"},
+     "responsabilidades": { "type": "string"},
+     "edadMinima": { "type": "number"},
+     "edadMaxima": { "type": "number"},
+     "nivelEstudios": "Profesional",
+     "estadoCivil": { "type": "string"},
+     "estatusEstudios": { "type": "string"},
+     "sexo": { "type": "string"},
+     "disponibilidadViajar": { "type": "string"},
+     "disponibilidadCambiarResidencia":{ "type": "string"},
+     "otrosRequerimientos": { "type": "string"},
+     "areasExperiencia": 
+                   [
+                    {
+                      "id": { "type": "number" },
+                      "anios": { "type": "number" }
+                    }
+                 ],                 
+    "idPerfilPsicometrico": { "type": "number"}
+                  
+      }
+  }
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+ "nombre": "Contador público",
+       "idOrganizacion": 1,
+       "atributos": [
+    {
+    "idAtributo": 1,
+    "id": 1,
+    "referencia": "NJ001"
+    }
+   ],
+      "mision": "Llevar al día la contabilidad de la empresa.”,
+      "descripcion": "Es la persona encargada de llevar todos los aspectos contables de la empresa.",
+      "responsabilidades": "Mantener al día los estados de cuenta de la empresa y dar seguimiento a todos los trámites ante las diversas instituciones y autoridades que se requiera.",
+      "edadMinima": 35,
+      "edadMaxima": 50,
+      "nivelEstudios": "Profesional",
+     "estadoCivil": "CAS",
+     "estatusEstudios": "Titulado",
+       "sexo": "M",
+        "disponibilidadViajar": true,
+      "disponibilidadCambiarResidencia": false,
+     "otrosRequerimientos": "Contar con VISA vigente y carro propio.",
+       "areasExperiencia": 
+                    [
+                      {
+                        "id": 103,
+                        "anios": 4
+                      }
+                    ],
+  "idPerfilPsicometrico": 1005
+   }
+</code></pre></div><div class="tab-pane" id="_descripcionesPuesto__id__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Editar Descripción de puesto",
+  "properties": {
+    "id": { "type": "number"},
+    "nombre": { "type": "string"},
+     "idOrganizacion": { "type": "number"},
+     "nombreOrganizacion": { "type": "string"},
+     "atributos": [
+                 {
+                  "idAtributo": { "type": "number"},
+                  "nombreAtributo": { "type": "string"},
+                  "id": { "type": "number"},
+                  "referencia": { "type": "string"},
+                  "nombre": { "type": "string"}
+                 }
+               ],
+     "mision": { "type": "string"},
+     "descripcion": { "type": "string"},
+     "responsabilidades": { "type": "string"},
+     "edadMinima": { "type": "number"},
+     "edadMaxima": { "type": "number"},
+     "nivelEstudios": "Profesional",
+     "estadoCivil": { "type": "string"},
+     "estatusEstudios": { "type": "string"},
+     "sexo": { "type": "string"},
+     "disponibilidadViajar": { "type": "string"},
+     "disponibilidadCambiarResidencia":{ "type": "string"},
+     "otrosRequerimientos": { "type": "string"},
+     "areasExperiencia": 
+                [
+                 {
+                   "id": { "type": "number" },
+                   "nombre": { "type": "number" },
+                   "anios": { "type": "number" }
+                 }
+              ],                 
+    "idPerfilPsicometrico": { "type": "number"},
+    "perfilPsicometrico": { "type": "string"},
+    "fechaCreacion": { "type": "Date"}
+               
+   }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": 205,
+  "nombre": "Contador público",
+  "idOrganizacion": 1,
+  "nombreOrganizacion": "Servicios ITX, S.C.",
+  "atributos": [
+                {
+                  "idAtributo": 1,
+                  "nombreAtributo": "Nivel jerárquico",
+                  "id": 1,
+                  "referencia": "NJ001",
+                  "nombre": "Empleado"
+                 }
+               ],
+  "mision": "Llevar al día la contabilidad de la empresa.”,
+  "descripcion”: “Es la persona encargada de llevar todos los aspectos contables de la empresa.”,
+  "responsabilidades”: “Mantener al día los estados de cuenta de la empresa y dar seguimiento a todos los trámites ante las diversas instituciones y autoridades que se requiera.”,
+  "edadMinima": 35,
+  "edadMaxima": 50,
+  "nivelEstudios": "Profesional",
+  "estadoCivil": "CAS",
+  "estatusEstudios": "Titulado",
+  "sexo": "M",
+  "disponibilidadViajar": true,
+  "disponibilidadCambiarResidencia": false,
+  "otrosRequerimientos": "Contar con VISA vigente y carro propio.",
+        "areasExperiencia": 
+              [
+                {
+                  "id": 103,
+                  "anios": 4
+                }
+              ],
+  "idPerfilPsicometrico": 1005,
+ "perfilPsicometrico": "Contador público",
+ "fechaCreacion": "Mon, 20 Jul 2015 10:07:00 GMT"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para editar descripciones de puesto.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para editar descripciones de puesto."
+  }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><p>Si alguna validación no fue exitosa, muestra un mensaje de error.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 422,
+    "message": "Error de validación en los datos de la desripción del puesto."
+  }
+} 
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_descripcionesPuesto__id__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/descripcionesPuesto</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Borrar una descripción de puesto.</p><p>Es requerido tener el permiso para borrar descripciones de puesto.</p><p>Se valida:</p><ul><li>Que la descripción de puesto no tenga posiciones relacionadas.</li><li>Que la descripción de puesto no tenga empleados relacionados.</li></ul></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_descripcionesPuesto__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#_descripcionesPuesto__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_descripcionesPuesto__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_descripcionesPuesto__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>La descripción de puesto se borró correctamente.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>No se tienen los permisos necesarios para borrar descripciones de puesto.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 403,
+    "message": "No se tienen los permisos necesarios para borrar descripciones de puesto."
+  }
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><p>No es posible borrar la descripción de puesto.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 405,
+    "message": "No es posible borrar la descripción de puesto porque tiene posiciones o empleados relacionados."
+  }
+} 
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_descripcionesPuesto__id__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/descripcionesPuesto</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información básica de una descripción de puesto.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_descripcionesPuesto__id__get_request" data-toggle="tab">Request</a></li><li><a href="#_descripcionesPuesto__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_descripcionesPuesto__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_descripcionesPuesto__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa la información básica de una descripción de puesto.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "description": "Información básica de una Descripción de puesto",
+  "properties": {
+     "id": { "type": "number"},
+     "nombre": { "type": "string" },
+     "nombreOrganizacion": { "type": "string" },
+     "atributoDefault": { 
+                          "nombreAtributo": { "type": "string" },
+                          "referencia": { "type": "string" },
+                          "nombre": { "type": "string" } 
+                         },
+     "perfilPsicometrico": { "type": "string" },
+     "fechaCreacion": { "type": "date" },
+     "fechaUltimoCambio": { "type": "date" }
+         }
+       }
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+  "id": 205,
+  "nombre": "Analista de Sistemas",
+  "nombreOrganizacion": "Servicios ITX, S.C.",
+  "atributoDefault": {
+                      "nombreAtributo": "Nivel Jerarquico",
+                      "referencia": "NJ001",
+                      "nombre": "Empleado"
+                     },
+  "perfilPsicometrico": "Analista",
+  "fechaCreacion": "Thu, 01 Jan 2015 00:00:00 GMT",
+  "fechaUltimoCambio": "Thu, 01 Jan 2015 00:00:00 GMT"
+ }
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Valida si el valor del id no es númerico.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 400,
+    "message": "El id de la descripción de puesto debe ser un número entero”.     
+    }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Si no se encuentra la descripción de puesto, sea igual al valor de id, muestra un mensaje de error.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 404,
+    "message": "No se encuentra la descripción de puesto."
+           }
+} 
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__descripcionesPuesto__id__detalle"><span class="parent">/descripcionesPuesto/{id}</span>/detalle</a> <span class="methods"><a href="#_descripcionesPuesto__id__detalle_get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel__descripcionesPuesto__id__detalle" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_descripcionesPuesto__id__detalle_get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>Obtener la información detallada de una descripción de puesto.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_descripcionesPuesto__id__detalle_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent">/descripcionesPuesto/{id}</span>/detalle</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener la información detallada de una descripción de puesto.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by oauth_2_0</div><ul class="nav nav-tabs"><li class="active"><a href="#_descripcionesPuesto__id__detalle_get_request" data-toggle="tab">Request</a></li><li><a href="#_descripcionesPuesto__id__detalle_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_descripcionesPuesto__id__detalle_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_descripcionesPuesto__id__detalle_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Regresa la información detallada de una descripción de puesto.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{ "$schema": "http://json-schema.org/schema",
+"type": "object",
+"description": "Información detallada de una Descripción de puesto",
+"properties": {
+   "id": { "type": "number"},
+   "nombre": { "type": "string" },
+   "idOrganizacion": { "type": "number"},
+   "nombreOrganizacion": { "type": "string" },
+   "atributos": [
+                        { 
+                        "idAtributo": { "type": "number"},
+                        "nombreAtributo": { "type": "string" },
+                        "id": { "type": "number"},
+                        "referencia": { "type": "string" },
+                        "nombre": { "type": "string" } 
+                        }
+                 ],
+    "mision": { "type": "string"},
+     "descripcion": { "type": "string"},
+     "responsabilidades": { "type": "string"},
+     "edadMinima": { "type": "number"},
+     "edadMaxima": { "type": "number"},
+     "nivelEstudios": "Profesional",
+     "estadoCivil": { "type": "string"},
+     "estatusEstudios": { "type": "string"},
+     "sexo": { "type": "string"},
+     "disponibilidadViajar": { "type": "string"},
+     "disponibilidadCambiarResidencia":{ "type": "string"},
+     "otrosRequerimientos": { "type": "string"},
+     "areasExperiencia": 
+              [
+               {
+                 "id": { "type": "number" },
+                 "nombre": { "type": "number" },
+                 "anios": { "type": "number" }
+               }
+              ],  
+     "idPerfilPsicometrico":  { "type": "number"},              
+     "perfilPsicometrico": { "type": "string"},
+     "fechaCreacion": { "type": "Date"},
+     "fechaUltimoCambio":  { "type": "Date"}
+       }
+  }
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+   "id": 205,
+   "nombre": "Analista de Sistemas",
+   "idOrganizacion": 1,
+   "nombreOrganizacion": "Servicios ITX, S.C.",
+   "atributos": [
+                    {
+                      "idAtributo": 1,
+                      "nombreAtributo": "Nivel Jerarquico",
+                      "id": 1,
+                      "referencia": "NJ001",
+                      "nombre": "Empleado"
+                     }
+                ],
+   "mision": "Llevar al día la contabilidad de la empresa.”,
+   "descripcion": "Es la persona encargada de llevar todos los aspectos contables de la empresa.",
+   "responsabilidades": "Mantener al día los estados de cuenta de la empresa y dar seguimiento a todos los trámites ante las diversas instituciones y autoridades que se requiera.",
+   "edadMinima": 35,
+   "edadMaxima": 50,
+   "nivelEstudios": "Profesional",
+   "estadoCivil": "CAS",
+   "estatusEstudios": "Titulado",
+   "sexo": "M",
+   "disponibilidadViajar": true,
+   "disponibilidadCambiarResidencia": false,
+   "otrosRequerimientos": "Contar con VISA vigente y carro propio.",
+      "areasExperiencia": 
+            [
+              {
+                "id": 103,
+                "nombre": "Contabilidad",
+                "anios": 4
+              }
+            ],
+  "idPerfilPsicometrico": 1005,
+  "perfilPsicometrico": "Contador público",
+  "fechaCreacion": "Mon, 20 Jul 2015 10:07:00 GMT",
+  "fechaUltimoCambio": "Thu, 01 Jan 2015 00:00:00 GMT"
+ }
+]
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Valida si el valor del id no es númerico.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+  "code": 400,
+  "message": "El id de la descripción de puesto debe ser un número entero”.     
+           }
+}        
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Si no se encuentra la descripción de puesto, sea igual al valor de id, muestra un mensaje de error.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "error": {
+    "code": 404,
+    "message": "No se encuentra la descripción de puesto."
+           }
+}  
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_descripcionesPuesto">/descripcionesPuesto</a></li></ul></div></div></div></div></body></html>
